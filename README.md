@@ -1,1 +1,16 @@
-打开网址
+# Jerry 的小站
+
+个人主页，收录一些小工具和实验性页面。
+
+访问地址：https://jerrychen94.github.io/my-pages/
+
+## 页面列表
+
+| 页面 | 说明 |
+|------|------|
+| [星空粒子](https://jerrychen94.github.io/my-pages/animation.html) | 交互式粒子动画，支持鼠标和触摸操作 |
+| [单词复习](https://jerrychen94.github.io/my-pages/vocab.html) | 卡片翻转 + 自测模式的单词复习工具 |
+
+## 技术栈
+
+纯静态页面，HTML + CSS + JavaScript，无框架依赖。
