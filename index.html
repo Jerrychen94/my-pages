@@ -7,148 +7,92 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    overflow: hidden;
-  }
-  .container {
-    text-align: center;
-    padding: 40px 20px;
-    max-width: 600px;
-    width: 100%;
-    animation: fadeIn 1s ease-out;
-  }
-  .avatar {
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00f5ff, #a855f7);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 48px;
-    margin: 0 auto 24px;
-    box-shadow: 0 0 40px rgba(168,85,247,0.4);
-    animation: float 3s ease-in-out infinite;
+    background: #fafafa;
+    color: #333;
+    padding: 60px 20px;
+    max-width: 640px;
+    margin: 0 auto;
   }
   h1 {
-    font-size: clamp(24px, 6vw, 40px);
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, #00f5ff, #a855f7, #ff00e6);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient 4s ease infinite;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
   }
-  .desc {
-    color: rgba(255,255,255,0.5);
+  .subtitle {
+    color: #888;
     font-size: 14px;
     margin-bottom: 48px;
-    letter-spacing: 4px;
   }
-  .cards {
-    display: grid;
-    gap: 16px;
-    padding: 0 8px;
+  .category {
+    margin-bottom: 36px;
   }
-  .card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 24px;
+  .category-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  .item {
+    display: block;
+    padding: 14px 0;
     text-decoration: none;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    color: inherit;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
   }
-  .card:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  .item:last-child {
+    border-bottom: none;
   }
-  .card-icon {
-    font-size: 36px;
-    width: 56px; height: 56px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 12px;
-    flex-shrink: 0;
+  .item:hover {
+    background: #f5f5f5;
+    margin: 0 -12px;
+    padding: 14px 12px;
+    border-radius: 8px;
   }
-  .card:nth-child(1) .card-icon { background: linear-gradient(135deg, #00f5ff33, #a855f733); }
-  .card:nth-child(2) .card-icon { background: linear-gradient(135deg, #ff00e633, #ffe60033); }
-  .card:nth-child(3) .card-icon { background: linear-gradient(135deg, #00ff8833, #3b82f633); }
-  .card:nth-child(4) .card-icon { background: linear-gradient(135deg, #ff6b6b33, #ff00e633); }
-  .card-text { text-align: left; }
-  .card-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-  .card-desc { font-size: 13px; color: rgba(255,255,255,0.45); }
-  .card-arrow { margin-left: auto; color: rgba(255,255,255,0.2); font-size: 20px; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes gradient { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
-  .bg-orb {
-    position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.15; pointer-events: none; z-index: -1;
+  .item-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
   }
-  .bg-orb:nth-child(1) { width: 300px; height: 300px; background: #a855f7; top: -100px; left: -100px; animation: drift1 8s ease-in-out infinite; }
-  .bg-orb:nth-child(2) { width: 250px; height: 250px; background: #00f5ff; bottom: -80px; right: -80px; animation: drift2 10s ease-in-out infinite; }
-  @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,30px); } }
-  @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-30px,-40px); } }
+  .item-desc {
+    font-size: 13px;
+    color: #888;
+  }
+  .footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+    color: #aaa;
+  }
+  .footer a {
+    color: #666;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
-<div class="bg-orb"></div>
-<div class="bg-orb"></div>
-<div class="container">
-  <div class="avatar">🚀</div>
   <h1>Jerry 的小站</h1>
-  <p class="desc">探索 · 学习 · 创造</p>
-  <div class="cards">
-    <a class="card" href="animation.html">
-      <div class="card-icon">✨</div>
-      <div class="card-text">
-        <div class="card-title">星空粒子</div>
-        <div class="card-desc">炫酷的交互式粒子动画效果</div>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-    <a class="card" href="vocab.html">
-      <div class="card-icon">📖</div>
-      <div class="card-text">
-        <div class="card-title">单词复习</div>
-        <div class="card-desc">卡片翻转 + 自测模式</div>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-    <a class="card" href="timer.html">
-      <div class="card-icon">🍅</div>
-      <div class="card-text">
-        <div class="card-title">番茄钟</div>
-        <div class="card-desc">专注计时 + 自动切换休息</div>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-    <a class="card" href="shenzhen-qingyuan-week-trip.html">
-      <div class="card-icon">🚗</div>
-      <div class="card-text">
-        <div class="card-title">深圳清远一周自驾游</div>
-        <div class="card-desc">连州·英德·清远 8 天自驾行程规划</div>
-      </div>
-      <div class="card-arrow">→</div>
-    </a>
-    <a class="card" href="https://github.com/29136632" target="_blank">
-      <div class="card-icon">🐙</div>
-      <div class="card-text">
-        <div class="card-title">GitHub</div>
-        <div class="card-desc">查看我的开源项目</div>
-      </div>
-      <div class="card-arrow">→</div>
+  <p class="subtitle">记录与分享</p>
+
+  <div class="category">
+    <div class="category-title">生活</div>
+    <a class="item" href="shenzhen-qingyuan-week-trip.html">
+      <div class="item-title">深圳清远一周自驾游</div>
+      <div class="item-desc">连州·英德·清远 8 天自驾行程规划</div>
     </a>
   </div>
-</div>
+
+  <div class="footer">
+    <a href="https://github.com/Jerrychen94" target="_blank">GitHub</a>
+  </div>
 </body>
 </html>
