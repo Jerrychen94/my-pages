@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究院实习项目 · 亚洲经济发展研究</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Han+Serif+SC:wght@400;700&family=Noto+Serif+SC:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --paper: #f8f5f0;
+  --warm: #e8ddd3;
+  --accent: #c4553a;
+  --accent-light: #e8a87c;
+  --gold: #b8860b;
+  --teal: #2a6b6b;
+  --muted: #7a7068;
+  --card: #ffffff;
+  --shadow: 0 2px 20px rgba(26,26,46,0.06);
+  --shadow-hover: 0 8px 32px rgba(26,26,46,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', 'Noto Serif SC', serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  position: relative;
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 600px 400px at 20% 80%, rgba(196,85,58,0.15), transparent),
+    radial-gradient(ellipse 500px 500px at 80% 20%, rgba(42,107,107,0.12), transparent);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  backdrop-filter: blur(4px);
+  animation: fadeDown 0.8s ease both;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.15;
+  max-width: 800px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent-light);
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  opacity: 0.75;
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 32px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  animation: fadeUp 0.8s ease 0.6s both;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  animation: bounce 2s infinite;
+  opacity: 0.5;
+  font-size: 1.4rem;
+}
+
+/* ===== SECTIONS ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 100px 0;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.section-desc {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+/* ===== INTERN CARDS ===== */
+.interns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.intern-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: var(--shadow);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.intern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.intern-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.intern-card.indonesia::before {
+  background: linear-gradient(90deg, #c4553a, #e8a87c);
+}
+
+.intern-card.vietnam::before {
+  background: linear-gradient(90deg, #c41a1a, #ffd700);
+}
+
+.intern-flag {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+}
+
+.intern-name {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.intern-origin {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.intern-bio {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.intern-topic {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--paper);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.intern-topic .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.intern-card.indonesia .dot { background: var(--accent); }
+.intern-card.vietnam .dot { background: #c41a1a; }
+
+/* ===== PROJECT OVERVIEW ===== */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 48px;
+}
+
+.overview-text {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: #444;
+}
+
+.overview-text p + p {
+  margin-top: 16px;
+}
+
+.overview-sidebar {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--teal);
+}
+
+.overview-sidebar h3 {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: var(--teal);
+}
+
+.overview-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.overview-sidebar li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--warm);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.overview-sidebar li:last-child { border-bottom: none; }
+
+.overview-sidebar li::before {
+  content: '→';
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* ===== TIMELINE ===== */
+.timeline-section {
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+  padding: 100px 0;
+}
+
+.timeline-section .section-label { color: var(--accent-light); }
+.timeline-section .section-label::before { background: var(--accent-light); }
+.timeline-section .section-desc { color: rgba(255,255,255,0.6); }
+
+.timeline {
+  position: relative;
+  margin-top: 56px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,0.1);
+}
+
+.tl-item {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 40px;
+  position: relative;
+  padding-left: 0;
+}
+
+.tl-marker {
+  flex-shrink: 0;
+  width: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-light);
+  background: var(--ink);
+  margin-top: 6px;
+}
+
+.tl-item.active .tl-dot {
+  background: var(--accent-light);
+  box-shadow: 0 0 12px rgba(232,168,124,0.4);
+}
+
+.tl-week {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+.tl-content {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 28px 32px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.tl-content:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.tl-content h3 {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.tl-content p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tl-tag {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+}
+
+.tl-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.tl-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.tl-link.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.tl-link.primary:hover {
+  background: #d4654a;
+  transform: translateY(-1px);
+}
+
+.tl-link.secondary {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.tl-link.secondary:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+/* ===== MY PAGES ===== */
+.pages-section {
+  background: var(--warm);
+  padding: 100px 0;
+}
+
+.pages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.page-card {
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.4s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.page-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.page-card-preview {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-card-preview.indonesia-bg {
+  background: linear-gradient(135deg, #B85042, #8B3A30);
+}
+
+.page-card-preview.vietnam-bg {
+  background: linear-gradient(135deg, #C41A1A, #8B1515);
+}
+
+.page-card-preview .preview-title {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+  color: #fff;
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.page-card-preview .preview-author {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.page-card-preview .preview-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255,255,255,0.5) 20px,
+    rgba(255,255,255,0.5) 21px
+  );
+}
+
+.page-card-body {
+  padding: 20px 24px;
+}
+
+.page-card-body p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.page-card-body .page-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.page-card-body .view-btn {
+  color: var(--accent);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.3s ease;
+}
+
+.page-card:hover .view-btn { gap: 8px; }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--warm);
+}
+
+footer .footer-brand {
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .interns { grid-template-columns: 1fr; }
+  .overview-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-direction: column; gap: 8px; }
+  .tl-item { flex-direction: column; gap: 12px; }
+  .timeline::before { display: none; }
+  .tl-marker { flex-direction: row; gap: 12px; }
+  .pages-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Research Internship 2026</div>
+  <h1>亚洲经济发展<br><em>研究与对话</em></h1>
+  <p class="hero-sub">两位来自东南亚的实习生，用四周时间探索各自国家的战后发展之路，<br>在历史与未来之间寻找亚洲的答案。</p>
+  <div class="hero-meta">
+    <span>📍 研究院</span>
+    <span>📅 2026年7月 – 8月</span>
+    <span>👥 Justin & Minh</span>
+  </div>
+  <div class="hero-scroll">↓</div>
+</div>
+
+<!-- INTERNS -->
+<section id="interns">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">团队成员</div>
+      <h2 class="section-title">两位实习生</h2>
+      <p class="section-desc">来自印度尼西亚和越南，分别研究自己国家的战后发展历程，在比较与对话中理解亚洲经济的过去与未来。</p>
+    </div>
+
+    <div class="interns reveal">
+      <div class="intern-card indonesia">
+        <div class="intern-flag">🇮🇩</div>
+        <div class="intern-name">Justin Ivan Jorianto</div>
+        <div class="intern-origin">印度尼西亚 · Indonesia</div>
+        <p class="intern-bio">来自印度尼西亚的金融工程专业学生。擅长用数据分析视角审视历史进程，关注东南亚经济体在全球化中的角色变迁。本次实习负责梳理印尼从独立到现代国家的发展脉络。</p>
+        <div class="intern-topic">
+          <span class="dot"></span>
+          研究课题：印度尼西亚二战后的发展
+        </div>
+      </div>
+
+      <div class="intern-card vietnam">
+        <div class="intern-flag">🇻🇳</div>
+        <div class="intern-name">Bui Cao Minh（裴高明）</div>
+        <div class="intern-origin">越南 · Vietnam</div>
+        <p class="intern-bio">来自越南的金融工程专业学生。对本国经济改革历程有深入研究，特别关注从计划经济到市场经济的转型路径。本次实习负责梳理越南从战后到新时代的发展轨迹。</p>
+        <div class="intern-topic">
+          <span class="dot"></span>
+          研究课题：越南二战后的发展
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT OVERVIEW -->
+<section id="overview" style="background: var(--warm);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">项目简介</div>
+      <h2 class="section-title">关于这个项目</h2>
+    </div>
+
+    <div class="overview-grid reveal">
+      <div class="overview-text">
+        <p>本项目是研究院2026年暑期实习计划的一部分，为期四周。两位来自东南亚的国际实习生——Justin（印度尼西亚）和Minh（越南）——在导师 Jerry 的指导下，围绕亚洲经济发展展开系列研究。</p>
+        <p>项目从各自国家的战后发展入手，逐步拓展到亚洲经济崛起的宏观叙事，再到中国"一带一路"倡议的国际合作分析，最终以开放式讨论收尾，探讨作为未来建设者如何更好地推动国际合作与发展。</p>
+        <p>每周四下午进行汇报展示与讨论，通过比较研究深化对亚洲经济体发展路径的理解。</p>
+      </div>
+
+      <div class="overview-sidebar">
+        <h3>项目亮点</h3>
+        <ul>
+          <li>跨国比较视角：印尼 vs 越南</li>
+          <li>从历史到未来的完整叙事链</li>
+          <li>涵盖经济、政治、外交多维度</li>
+          <li>关注亚洲崛起与三次危机</li>
+          <li>探讨"一带一路"合作机遇</li>
+          <li>前瞻性开放式思考</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY TIMELINE -->
+<section class="timeline-section" id="tasks">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">任务安排</div>
+      <h2 class="section-title" style="color:#fff;">四周研究计划</h2>
+      <p class="section-desc">从自身国家到亚洲全局，从历史回顾到未来展望，层层递进的研究旅程。</p>
+    </div>
+
+    <div class="timeline reveal">
+      <!-- Week 1 -->
+      <div class="tl-item active">
+        <div class="tl-marker">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 1</div>
+        </div>
+        <div class="tl-content">
+          <h3>印度尼西亚和越南二战后的发展</h3>
+          <p>梳理各自国家从二战后到现在的整体发展情况，涵盖重要领导人时期、重要历史事件，以及对内和对外的情况。每人展示不超过25分钟。</p>
+          <div class="tl-tags">
+            <span class="tl-tag">重要领导人</span>
+            <span class="tl-tag">历史事件</span>
+            <span class="tl-tag">内政外交</span>
+          </div>
+          <div class="tl-links">
+            <a href="indonesia.html" class="tl-link primary">🇮🇩 Justin 的汇报 →</a>
+            <a href="vietnam.html" class="tl-link primary">🇻🇳 Minh 的汇报 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 2</div>
+        </div>
+        <div class="tl-content">
+          <h3>亚洲国家二战后的崛起与三次危机</h3>
+          <p>按时间线梳理亚洲国家二战后如何崛起，以及当前面临的问题。重点关注日本、亚洲四小龙、亚洲四小虎，以及1997年亚洲金融危机、2008年全球金融危机、2019年新冠疫情三次危机。</p>
+          <div class="tl-tags">
+            <span class="tl-tag">日本</span>
+            <span class="tl-tag">四小龙</span>
+            <span class="tl-tag">四小虎</span>
+            <span class="tl-tag">三次危机</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 3</div>
+        </div>
+        <div class="tl-content">
+          <h3>中国"一带一路"倡议（BRI）</h3>
+          <p>探讨中国"一带一路"倡议的成果与不足，分析其对中国自身及参与国（特别是印尼和越南）的利益考量与影响。</p>
+          <div class="tl-tags">
+            <span class="tl-tag">BRI</span>
+            <span class="tl-tag">国际合作</span>
+            <span class="tl-tag">利益分析</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="tl-item">
+        <div class="tl-marker">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 4</div>
+        </div>
+        <div class="tl-content">
+          <h3>如果我们是建设者</h3>
+          <p>基于前三周的回顾与思考，进行前瞻性开放式讨论。探讨作为未来建设者如何做得更好，如何保持开放态度、避免意识形态割裂、寻求更好的共识。</p>
+          <div class="tl-tags">
+            <span class="tl-tag">前瞻思考</span>
+            <span class="tl-tag">国际合作</span>
+            <span class="tl-tag">共识构建</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MY PAGES -->
+<section class="pages-section" id="pages">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">My Pages</div>
+      <h2 class="section-title">汇报展示</h2>
+      <p class="section-desc">第一周任务的网页版汇报，详细梳理了印度尼西亚和越南二战后的发展历程。</p>
+    </div>
+
+    <div class="pages-grid reveal">
+      <a href="indonesia.html" class="page-card">
+        <div class="page-card-preview indonesia-bg">
+          <div class="preview-pattern"></div>
+          <span class="preview-author">Justin</span>
+          <div class="preview-title">印度尼西亚：从独立到现代国家</div>
+        </div>
+        <div class="page-card-body">
+          <p>从1945年独立宣言到改革时代，梳理印尼七十余年的国家发展之路——苏加诺、苏哈托、佐科到普拉博沃。</p>
+          <div class="page-meta">
+            <span>2026.07.16 · 第一次汇报</span>
+            <span class="view-btn">查看 →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="vietnam.html" class="page-card">
+        <div class="page-card-preview vietnam-bg">
+          <div class="preview-pattern"></div>
+          <span class="preview-author">Minh</span>
+          <div class="preview-title">越南：从战后到新时代的发展</div>
+        </div>
+        <div class="page-card-body">
+          <p>从抗法抗美到革新开放，从计划经济到全球供应链——越南如何用八十年完成从碎片化农业社会到制造业中心的蜕变。</p>
+          <div class="page-meta">
+            <span>2026.07.16 · 第一次汇报</span>
+            <span class="view-btn">查看 →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">研究院实习项目 · 亚洲经济发展研究</div>
+  <p>Justin & Minh · 2026年7月 – 8月</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
