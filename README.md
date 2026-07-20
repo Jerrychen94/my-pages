@@ -18,6 +18,12 @@
 |------|------|
 | [研究院实习 · 亚洲经济发展研究](https://jerrychen94.github.io/my-pages/internship/index.html) | 印尼与越南战后发展研究，Justin & Minh 实习项目主页 |
 
+### 学习
+
+| 页面 | 说明 |
+|------|------|
+| [AI 智能体学习笔记](https://jerrychen94.github.io/my-pages/ai-agent/index.html) | Qwen Code 使用经验、Skills 编写、MCP 接入与应用场景 |
+
 ## 技术栈
 
 纯静态页面，HTML + CSS + JavaScript，无框架依赖。

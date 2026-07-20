@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 智能体学习笔记</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0f;
+  --surface: #141418;
+  --surface2: #1a1a20;
+  --border: #2a2a35;
+  --text: #e4e4e8;
+  --text-muted: #8888a0;
+  --accent: #7c6aef;
+  --accent-glow: rgba(124,106,239,0.15);
+  --green: #4ade80;
+  --orange: #fb923c;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+  --yellow: #facc15;
+  --red: #ef4444;
+  --mono: 'JetBrains Mono', 'Consolas', monospace;
+  --sans: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(12,12,15,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-brand .cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: var(--surface2);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 800px 600px at 70% 30%, var(--accent-glow), transparent),
+    radial-gradient(ellipse 400px 400px at 20% 80%, rgba(34,211,238,0.06), transparent);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.hero-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-num {
+  font-family: var(--mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ===== SECTIONS ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 100px 0;
+}
+
+.section-header {
+  margin-bottom: 56px;
+}
+
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ===== WHAT IS AI AGENT ===== */
+.agent-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.intro-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s;
+}
+
+.intro-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.intro-card .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.intro-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.intro-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ===== CODE BLOCK ===== */
+.code-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.code-header .dots {
+  display: flex;
+  gap: 6px;
+}
+
+.code-header .dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.code-header .dots span:nth-child(1) { background: var(--red); }
+.code-header .dots span:nth-child(2) { background: var(--yellow); }
+.code-header .dots span:nth-child(3) { background: var(--green); }
+
+.code-body {
+  padding: 20px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  overflow-x: auto;
+}
+
+.code-body .kw { color: var(--accent); }
+.code-body .str { color: var(--green); }
+.code-body .fn { color: var(--cyan); }
+.code-body .cm { color: #555570; }
+.code-body .num { color: var(--orange); }
+
+/* ===== QWEN SECTION ===== */
+.qwen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.qwen-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s;
+}
+
+.qwen-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124,106,239,0.4);
+}
+
+.qwen-card .tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.qwen-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.qwen-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.qwen-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.qwen-card li {
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.qwen-card li::before {
+  content: '▸';
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===== SKILLS SECTION ===== */
+.skills-flow {
+  margin-top: 48px;
+}
+
+.skill-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-item:last-child { border-bottom: none; }
+
+.skill-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-name {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.skill-type {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.skill-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--green);
+  width: fit-content;
+}
+
+.skill-status .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.skill-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.skill-content p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tags span {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* ===== MCP SECTION ===== */
+.mcp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.mcp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.mcp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.mcp-card:hover {
+  border-color: rgba(124,106,239,0.3);
+  transform: translateY(-2px);
+}
+
+.mcp-card .mcp-icon {
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+
+.mcp-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.mcp-card .mcp-source {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.mcp-card p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.mcp-card .tools-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  background: var(--surface2);
+  color: var(--accent);
+}
+
+/* ===== SCENARIOS SECTION ===== */
+.scenarios-list {
+  margin-top: 48px;
+}
+
+.scenario {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.scenario:last-child { border-bottom: none; }
+
+.scenario-num {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--surface2);
+  line-height: 1;
+}
+
+.scenario-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.scenario-content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.scenario-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scenario-tools span {
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* ===== TAKEAWAYS ===== */
+.takeaways {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  margin-top: 48px;
+}
+
+.takeaways h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.takeaway-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.takeaway-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.takeaway-item .emoji {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.takeaway-item h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.takeaway-item p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 60px 32px;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+footer .footer-line {
+  margin-bottom: 8px;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav { padding: 12px 16px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-stats { flex-wrap: wrap; gap: 24px; }
+  .container { padding: 0 20px; }
+  section { padding: 60px 0; }
+  .agent-intro,
+  .qwen-grid,
+  .takeaway-grid { grid-template-columns: 1fr; }
+  .mcp-grid { grid-template-columns: 1fr; }
+  .skill-item { grid-template-columns: 1fr; gap: 12px; }
+  .scenario { grid-template-columns: 40px 1fr; gap: 16px; }
+  .takeaways { padding: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <span>~/ai-agent-notes</span>
+    <span class="cursor"></span>
+  </div>
+  <div class="nav-links">
+    <a href="#about">什么是智能体</a>
+    <a href="#qwen">Qwen Code</a>
+    <a href="#skills">Skills</a>
+    <a href="#mcp">MCP</a>
+    <a href="#scenarios">应用场景</a>
+    <a href="#takeaways">心得</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span>Learning in Progress · 2026</span>
+    </div>
+    <h1>AI 智能体<br><span class="gradient">学习与实践笔记</span></h1>
+    <p class="hero-desc">记录使用 AI 智能体（Qwen Code）的日常经验——从基础对话到编写 Skills、接入 MCP 服务，再到真实项目中的应用场景与踩坑心得。</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">核心模块</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">自定义 Skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">MCP 服务</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">持续学习中</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: WHAT IS AI AGENT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">01</div>
+      <h2 class="section-title">什么是 AI 智能体？</h2>
+      <p class="section-desc">不只是聊天机器人——AI 智能体是能调用工具、读写文件、执行命令、与外部系统交互的自主代理。</p>
+    </div>
+
+    <div class="agent-intro reveal">
+      <div class="intro-card">
+        <div class="icon" style="background: var(--accent-glow);">🤖</div>
+        <h3>对话 → 行动</h3>
+        <p>传统 AI 只能回答问题。智能体可以直接执行任务：写代码、创建文件、搜索网络、操作数据库，甚至控制浏览器。</p>
+      </div>
+      <div class="intro-card">
+        <div class="icon" style="background: rgba(34,211,238,0.1);">🔧</div>
+        <h3>工具调用</h3>
+        <p>智能体通过 Tool Use 协议调用各种工具——文件读写、Shell 命令、API 请求，让 AI 从"说"变成"做"。</p>
+      </div>
+      <div class="intro-card">
+        <div class="icon" style="background: rgba(74,222,128,0.1);">🧩</div>
+        <h3>可扩展能力</h3>
+        <p>通过 Skills（自定义技能）和 MCP（模型上下文协议），可以无限扩展智能体的能力边界，让它成为真正的个人助手。</p>
+      </div>
+      <div class="intro-card">
+        <div class="icon" style="background: rgba(251,146,60,0.1);">🧠</div>
+        <h3>上下文记忆</h3>
+        <p>智能体可以记住项目结构、编码规范、用户偏好，甚至跨会话保存知识，越用越懂你。</p>
+      </div>
+    </div>
+
+    <div class="code-block reveal" style="margin-top: 40px;">
+      <div class="code-header">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>agent-workflow.md</span>
+      </div>
+      <div class="code-body">
+<span class="cm">## AI 智能体工作流</span>
+
+<span class="kw">用户</span>: "帮我做一个网页"
+  ↓
+<span class="fn">智能体</span>: 理解需求 → 规划结构
+  ↓
+<span class="fn">工具调用</span>: read_file, write_file, edit
+  ↓
+<span class="fn">技能加载</span>: frontend-design skill
+  ↓
+<span class="fn">外部服务</span>: MCP → WebSearch (查资料)
+  ↓
+<span class="fn">部署</span>: git add → commit → push → GitHub Pages
+  ↓
+<span class="kw">用户</span>: 收到在线链接 ✅
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: QWEN CODE -->
+<section id="qwen" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">02</div>
+      <h2 class="section-title">Qwen Code 使用经验</h2>
+      <p class="section-desc">Qwen Code 是阿里通义千问推出的 CLI 智能体，在终端中直接与代码和项目交互。以下是日常使用中的核心场景和技巧。</p>
+    </div>
+
+    <div class="qwen-grid reveal">
+      <div class="qwen-card">
+        <div class="tag" style="background: var(--accent-glow); color: var(--accent);">日常开发</div>
+        <h3>代码编写与重构</h3>
+        <p>直接描述需求，智能体自动分析项目结构、遵循现有代码风格进行编写。</p>
+        <ul>
+          <li>自动识别框架和依赖</li>
+          <li>遵循项目命名规范和代码风格</li>
+          <li>一次性修改多个关联文件</li>
+          <li>自动生成测试代码</li>
+        </ul>
+      </div>
+      <div class="qwen-card">
+        <div class="tag" style="background: rgba(34,211,238,0.1); color: var(--cyan);">项目管理</div>
+        <h3>文件与 Git 操作</h3>
+        <p>从创建文件到提交代码，智能体可以完成完整的项目管理流程。</p>
+        <ul>
+          <li>批量创建/重命名/移动文件</li>
+          <li>自动 git add、commit、push</li>
+          <li>处理合并冲突</li>
+          <li>跨目录批量替换内容</li>
+        </ul>
+      </div>
+      <div class="qwen-card">
+        <div class="tag" style="background: rgba(74,222,128,0.1); color: var(--green);">文档处理</div>
+        <h3>多格式文档生成</h3>
+        <p>通过 Skills 扩展，可以生成 Word、PPT、PDF、Excel 等专业文档。</p>
+        <ul>
+          <li>学术专著排版与引用管理</li>
+          <li>PPT 演示文稿自动生成</li>
+          <li>会议纪要从语音转写生成</li>
+          <li>数据清洗与 Excel 报表</li>
+        </ul>
+      </div>
+      <div class="qwen-card">
+        <div class="tag" style="background: rgba(251,146,60,0.1); color: var(--orange);">效率技巧</div>
+        <h3>高效使用方法</h3>
+        <p>掌握这些技巧可以大幅提升与智能体协作的效率。</p>
+        <ul>
+          <li>用 QWEN.md 定义项目规范</li>
+          <li>复杂任务先让它出方案再执行</li>
+          <li>善用 /review 做代码审查</li>
+          <li>并行任务用 agent 分发给子代理</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="code-block reveal" style="margin-top: 32px;">
+      <div class="code-header">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>QWEN.md — 项目规范示例</span>
+      </div>
+      <div class="code-body">
+<span class="cm"># 项目规范</span>
+
+<span class="kw">## 代码风格</span>
+- 使用 <span class="str">ESLint + Prettier</span> 统一格式
+- 组件使用 <span class="fn">PascalCase</span>，工具函数使用 <span class="fn">camelCase</span>
+- 中文注释，英文变量名
+
+<span class="kw">## 部署流程</span>
+- 本地开发 → <span class="fn">git push</span> → GitHub Pages 自动部署
+- 个人网站仓库: <span class="str">Jerrychen94/my-pages</span>
+
+<span class="kw">## 常用路径</span>
+- 个人网站: <span class="str">D:\nut\进行项目\个人项目\my-pages</span>
+- 实习项目: <span class="str">D:\nut\进行项目\研究院-实习生</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">03</div>
+      <h2 class="section-title">Skills · 自定义技能</h2>
+      <p class="section-desc">Skills 是 Qwen Code 的扩展机制——用 Markdown 编写技能描述，让智能体在特定场景下自动加载专业能力。边做边写，逐步积累。</p>
+    </div>
+
+    <div class="code-block reveal">
+      <div class="code-header">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>skill-structure.md — Skill 文件结构</span>
+      </div>
+      <div class="code-body">
+<span class="cm">## 一个 Skill 由以下部分组成：</span>
+
+<span class="kw">skill.md</span>          <span class="cm"># 技能描述与触发规则（必须）</span>
+<span class="kw">reference.md</span>      <span class="cm"># 详细参考文档（可选）</span>
+<span class="kw">scripts/</span>          <span class="cm"># 辅助脚本（可选）</span>
+<span class="kw">evals/</span>            <span class="cm"># 测试用例（可选）</span>
+
+<span class="cm">## 触发方式</span>
+<span class="fn">自动触发</span>: 根据 description 中的关键词匹配
+<span class="fn">手动触发</span>: 用户输入 /skill-name
+
+<span class="cm">## 存放位置</span>
+<span class="str">~/.qwen/skills/your-skill/</span>    <span class="cm"># 用户级（跨项目）</span>
+<span class="str">.qwen/skills/your-skill/</span>      <span class="cm"># 项目级（仅当前项目）</span>
+      </div>
+    </div>
+
+    <div class="skills-flow reveal">
+      <div class="skill-item">
+        <div class="skill-meta">
+          <div class="skill-name">deploy-site</div>
+          <div class="skill-type">部署工具</div>
+          <div class="skill-status"><span class="dot"></span> 使用中</div>
+        </div>
+        <div class="skill-content">
+          <h3>一键发布到 GitHub Pages</h3>
+          <p>将本地 HTML 文件发布到个人网站。自动处理文件复制、路径替换、git 提交推送。解决了网络认证、路径映射等常见问题。</p>
+          <div class="skill-tags">
+            <span>git</span>
+            <span>github-pages</span>
+            <span>deployment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-meta">
+          <div class="skill-name">ticktick-cli</div>
+          <div class="skill-type">任务管理</div>
+          <div class="skill-status"><span class="dot"></span> 使用中</div>
+        </div>
+        <div class="skill-content">
+          <h3>滴答清单 CLI 集成</h3>
+          <p>通过 dida CLI 管理滴答清单的任务、项目、习惯和专注记录。支持创建任务、查询日程、打卡习惯等操作，让 AI 直接帮你管理待办。</p>
+          <div class="skill-tags">
+            <span>dida-cli</span>
+            <span>task-management</span>
+            <span>productivity</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-meta">
+          <div class="skill-name">frontend-design</div>
+          <div class="skill-type">设计生成</div>
+          <div class="skill-status"><span class="dot"></span> 使用中</div>
+        </div>
+        <div class="skill-content">
+          <h3>高质量前端界面生成</h3>
+          <p>生成有设计感的网页、组件和 UI。内置设计原则和审美标准，避免"AI 味"的通用风格，产出更接近专业设计师水准的作品。</p>
+          <div class="skill-tags">
+            <span>html</span>
+            <span>css</span>
+            <span>design-system</span>
+            <span>responsive</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-meta">
+          <div class="skill-name">docx / pptx / pdf</div>
+          <div class="skill-type">文档处理</div>
+          <div class="skill-status"><span class="dot"></span> 使用中</div>
+        </div>
+        <div class="skill-content">
+          <h3>专业文档生成套件</h3>
+          <p>Word 文档（含目录、页眉页脚）、PPT 演示文稿、PDF 处理（合并/拆分/OCR）。覆盖从学术报告到商务文档的全场景需求。</p>
+          <div class="skill-tags">
+            <span>docx</span>
+            <span>pptx</span>
+            <span>pdf</span>
+            <span>formatting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-meta">
+          <div class="skill-name">academic-book</div>
+          <div class="skill-type">学术写作</div>
+          <div class="skill-status"><span class="dot"></span> 使用中</div>
+        </div>
+        <div class="skill-content">
+          <h3>学术专著写作助手</h3>
+          <p>规范化学术书籍的章节结构、引用格式、参考文献管理。支持 Pandoc 导出、上标引用、图表交叉引用、数据来源标注等学术写作规范。</p>
+          <div class="skill-tags">
+            <span>academic</span>
+            <span>citation</span>
+            <span>pandoc</span>
+            <span>docx-export</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-meta">
+          <div class="skill-name">transcript-to-meeting</div>
+          <div class="skill-type">会议处理</div>
+          <div class="skill-status"><span class="dot"></span> 使用中</div>
+        </div>
+        <div class="skill-content">
+          <h3>语音转写 → 会议纪要</h3>
+          <p>将语音转写文件（docx 或 txt）自动转换为结构化会议记录。提取关键议题、决议事项、待办任务，省去手动整理的时间。</p>
+          <div class="skill-tags">
+            <span>transcription</span>
+            <span>meeting-notes</span>
+            <span>summarization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: MCP -->
+<section id="mcp" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">04</div>
+      <h2 class="section-title">MCP · 外部服务接入</h2>
+      <p class="section-desc">Model Context Protocol（MCP）让智能体可以调用外部 API 和服务——地图搜索、网络检索、语音识别、网页解析，打通 AI 与真实世界的连接。</p>
+    </div>
+
+    <div class="code-block reveal">
+      <div class="code-header">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>settings.json — MCP 配置示例</span>
+      </div>
+      <div class="code-body">
+{
+  <span class="str">"mcpServers"</span>: {
+    <span class="fn">"amap-maps"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"-y"</span>, <span class="str">"@amap/amap-maps-mcp-server"</span>]
+    },
+    <span class="fn">"WebSearch"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"-y"</span>, <span class="str">"@bailian/web-search-mcp"</span>]
+    }
+  }
+}
+      </div>
+    </div>
+
+    <div class="mcp-grid reveal">
+      <div class="mcp-card" style="--card-color: var(--green);">
+        <div class="mcp-icon">🗺️</div>
+        <h3>高德地图</h3>
+        <div class="mcp-source">amap-maps</div>
+        <p>地理编码、路径规划、POI 搜索、天气查询、距离测量。支持驾车/步行/骑行/公交多种出行方式。</p>
+        <div class="tools-count">🔧 18 tools</div>
+      </div>
+
+      <div class="mcp-card" style="--card-color: var(--cyan);">
+        <div class="mcp-icon">🔍</div>
+        <h3>网络搜索</h3>
+        <div class="mcp-source">WebSearch (百炼)</div>
+        <p>实时搜索百科知识、时事新闻、天气等信息。让智能体获取最新的互联网信息，而非依赖训练数据。</p>
+        <div class="tools-count">🔧 1 tool</div>
+      </div>
+
+      <div class="mcp-card" style="--card-color: var(--orange);">
+        <div class="mcp-icon">🎙️</div>
+        <h3>语音转写</h3>
+        <div class="mcp-source">SpeechToText (百炼)</div>
+        <p>将录音文件转换为文本，支持多声道识别和批量处理。会议录音、访谈记录一键转文字。</p>
+        <div class="tools-count">🔧 2 tools</div>
+      </div>
+
+      <div class="mcp-card" style="--card-color: var(--pink);">
+        <div class="mcp-icon">🌐</div>
+        <h3>网页解析</h3>
+        <div class="mcp-source">WebParser (百炼)</div>
+        <p>抓取网页内容并格式化为 Markdown，支持提取子链接。用于深度阅读和资料收集。</p>
+        <div class="tools-count">🔧 2 tools</div>
+      </div>
+
+      <div class="mcp-card" style="--card-color: var(--yellow);">
+        <div class="mcp-icon">🧠</div>
+        <h3>Sequential Thinking</h3>
+        <div class="mcp-source">Sequential_Thinking</div>
+        <p>动态反思式问题求解工具，帮助智能体进行多步骤推理和深度思考，提升复杂问题的解决质量。</p>
+        <div class="tools-count">🔧 1 tool</div>
+      </div>
+
+      <div class="mcp-card" style="--card-color: var(--accent);">
+        <div class="mcp-icon">🔎</div>
+        <h3>Bocha 搜索</h3>
+        <div class="mcp-source">market-cmapi</div>
+        <p>备用网络搜索服务，提供更广泛的搜索结果覆盖，与百炼搜索互补使用。</p>
+        <div class="tools-count">🔧 1 tool</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: SCENARIOS -->
+<section id="scenarios">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">05</div>
+      <h2 class="section-title">应用场景 · 实战案例</h2>
+      <p class="section-desc">真实项目中的 AI 智能体应用——不是 Demo，是实际完成的工作。</p>
+    </div>
+
+    <div class="scenarios-list reveal">
+      <div class="scenario">
+        <div class="scenario-num">01</div>
+        <div class="scenario-content">
+          <h3>实习项目网站全流程</h3>
+          <p>为研究院实习项目创建完整网站：从需求分析 → 设计页面 → 编写代码 → 部署上线，全程由 AI 智能体完成。包含中英文切换、滚动动画、响应式布局，最终部署到 GitHub Pages。</p>
+          <div class="scenario-tools">
+            <span>frontend-design</span>
+            <span>deploy-site</span>
+            <span>HTML/CSS/JS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-num">02</div>
+        <div class="scenario-content">
+          <h3>会议录音 → 结构化纪要</h3>
+          <p>实习生汇报会议的完整处理流程：录音文件 → MCP 语音转写 → transcript-to-meeting 技能处理 → 生成结构化会议纪要（含议题、决议、待办）→ 导出 Word 文档。</p>
+          <div class="scenario-tools">
+            <span>SpeechToText MCP</span>
+            <span>transcript-to-meeting</span>
+            <span>docx</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-num">03</div>
+        <div class="scenario-content">
+          <h3>个人网站内容管理</h3>
+          <p>维护个人 GitHub Pages 网站，包括新增页面、更新导航、批量部署。通过 deploy-site 技能实现一键发布，自动处理路径映射和 git 操作。</p>
+          <div class="scenario-tools">
+            <span>deploy-site</span>
+            <span>git</span>
+            <span>HTML</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-num">04</div>
+        <div class="scenario-content">
+          <h3>研究资料收集与分析</h3>
+          <p>利用 MCP 服务进行资料收集：WebSearch 搜索最新数据 → WebParser 深度抓取网页内容 → 整理分析 → 生成研究报告。支持多语言资料的检索和整合。</p>
+          <div class="scenario-tools">
+            <span>WebSearch MCP</span>
+            <span>WebParser MCP</span>
+            <span>Sequential Thinking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-num">05</div>
+        <div class="scenario-content">
+          <h3>任务管理与日程规划</h3>
+          <p>通过滴答清单集成，直接用自然语言管理任务："帮我创建下周的汇报准备任务"、"查看今天的高优先级任务"、"把这个任务移到项目追踪清单"。</p>
+          <div class="scenario-tools">
+            <span>ticktick-cli</span>
+            <span>dida CLI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-num">06</div>
+        <div class="scenario-content">
+          <h3>学术文档排版与导出</h3>
+          <p>使用 academic-book 技能处理学术写作：规范化章节结构、管理参考文献引用、标注数据来源、处理图表交叉引用，最终通过 Pandoc 导出为符合学术规范的 Word 文档。</p>
+          <div class="scenario-tools">
+            <span>academic-book</span>
+            <span>docx</span>
+            <span>pandoc</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: TAKEAWAYS -->
+<section id="takeaways" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">06</div>
+      <h2 class="section-title">心得与体会</h2>
+      <p class="section-desc">使用 AI 智能体这段时间的一些思考和经验总结。</p>
+    </div>
+
+    <div class="takeaways reveal">
+      <h3>💡 关键认知</h3>
+      <div class="takeaway-grid">
+        <div class="takeaway-item">
+          <span class="emoji">🎯</span>
+          <div>
+            <h4>提示词即接口</h4>
+            <p>与智能体沟通就像设计 API——越清晰的输入，越稳定的输出。学会把模糊需求拆解为具体指令是核心技能。</p>
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="emoji">🔄</span>
+          <div>
+            <h4>迭代优于完美</h4>
+            <p>不要期望一次对话就得到完美结果。先让 AI 出初版，然后逐步反馈调整，效率远高于反复修改提示词。</p>
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="emoji">🧩</span>
+          <div>
+            <h4>Skills 是复利</h4>
+            <p>每写一个 Skill，后续所有类似任务都受益。投入时间编写和维护 Skills，长期回报巨大。</p>
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="emoji">🌐</span>
+          <div>
+            <h4>MCP 打破边界</h4>
+            <p>接入外部服务后，AI 不再是封闭系统。地图、搜索、数据库、API——一切都可以成为智能体的"手和眼"。</p>
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="emoji">📋</span>
+          <div>
+            <h4>QWEN.md 很重要</h4>
+            <p>项目规范文件让智能体理解你的代码风格、部署流程、常用路径。花 10 分钟写清楚，省下无数次解释。</p>
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="emoji">⚡</span>
+          <div>
+            <h4>人机协作 > 全自动</h4>
+            <p>最好的模式不是完全交给 AI，而是人做决策和审核，AI 做执行和加速。保持对输出的判断力。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-line">AI 智能体学习笔记 · Jerry Chen</p>
+  <p>Powered by Qwen Code · 2026</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
