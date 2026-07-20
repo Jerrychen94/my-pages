@@ -628,6 +628,46 @@ footer .footer-brand {
   transform: translateY(0);
 }
 
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 100px;
+  padding: 4px;
+  box-shadow: 0 2px 16px rgba(26,26,46,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(26,26,46,0.06);
+}
+
+.lang-toggle:hover {
+  box-shadow: 0 4px 24px rgba(26,26,46,0.16);
+  transform: translateY(-1px);
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: all 0.3s ease;
+  user-select: none;
+  line-height: 1;
+}
+
+.lang-btn.active {
+  background: var(--ink);
+  color: #fff;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .interns { grid-template-columns: 1fr; }
@@ -642,14 +682,20 @@ footer .footer-brand {
 </head>
 <body>
 
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-toggle" onclick="toggleLang()">
+  <div class="lang-btn active" id="btn-zh">中</div>
+  <div class="lang-btn" id="btn-en">EN</div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">Research Internship 2026</div>
-  <h1>亚洲经济发展<br><em>研究与对话</em></h1>
-  <p class="hero-sub">两位来自东南亚的实习生，用四周时间探索各自国家的战后发展之路，<br>在历史与未来之间寻找亚洲的答案。</p>
+  <div class="hero-badge" data-i18n="heroBadge">Research Internship 2026</div>
+  <h1 data-i18n="heroTitle">亚洲经济发展<br><em>研究与对话</em></h1>
+  <p class="hero-sub" data-i18n="heroSub">两位来自东南亚的实习生，用四周时间探索各自国家的战后发展之路，<br>在历史与未来之间寻找亚洲的答案。</p>
   <div class="hero-meta">
-    <span>📍 研究院</span>
-    <span>📅 2026年7月 – 8月</span>
+    <span data-i18n="heroMeta1">📍 研究院</span>
+    <span data-i18n="heroMeta2">📅 2026年7月 – 8月</span>
     <span>👥 Justin & Minh</span>
   </div>
   <div class="hero-scroll">↓</div>
@@ -659,31 +705,31 @@ footer .footer-brand {
 <section id="interns">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">团队成员</div>
-      <h2 class="section-title">两位实习生</h2>
-      <p class="section-desc">来自印度尼西亚和越南，分别研究自己国家的战后发展历程，在比较与对话中理解亚洲经济的过去与未来。</p>
+      <div class="section-label" data-i18n="internsLabel">团队成员</div>
+      <h2 class="section-title" data-i18n="internsTitle">两位实习生</h2>
+      <p class="section-desc" data-i18n="internsDesc">来自印度尼西亚和越南，分别研究自己国家的战后发展历程，在比较与对话中理解亚洲经济的过去与未来。</p>
     </div>
 
     <div class="interns reveal">
       <div class="intern-card indonesia">
         <div class="intern-flag">🇮🇩</div>
         <div class="intern-name">Justin Ivan Jorianto</div>
-        <div class="intern-origin">印度尼西亚 · Indonesia</div>
-        <p class="intern-bio">来自印度尼西亚的金融工程专业学生。擅长用数据分析视角审视历史进程，关注东南亚经济体在全球化中的角色变迁。本次实习负责梳理印尼从独立到现代国家的发展脉络。</p>
+        <div class="intern-origin" data-i18n="justinOrigin">印度尼西亚 · Indonesia</div>
+        <p class="intern-bio" data-i18n="justinBio">来自印度尼西亚的金融工程专业学生。擅长用数据分析视角审视历史进程，关注东南亚经济体在全球化中的角色变迁。本次实习负责梳理印尼从独立到现代国家的发展脉络。</p>
         <div class="intern-topic">
           <span class="dot"></span>
-          研究课题：印度尼西亚二战后的发展
+          <span data-i18n="justinTopic">研究课题：印度尼西亚二战后的发展</span>
         </div>
       </div>
 
       <div class="intern-card vietnam">
         <div class="intern-flag">🇻🇳</div>
-        <div class="intern-name">Bui Cao Minh（裴高明）</div>
-        <div class="intern-origin">越南 · Vietnam</div>
-        <p class="intern-bio">来自越南的金融工程专业学生。对本国经济改革历程有深入研究，特别关注从计划经济到市场经济的转型路径。本次实习负责梳理越南从战后到新时代的发展轨迹。</p>
+        <div class="intern-name" data-i18n="minhName">Bui Cao Minh（裴高明）</div>
+        <div class="intern-origin" data-i18n="minhOrigin">越南 · Vietnam</div>
+        <p class="intern-bio" data-i18n="minhBio">来自越南的金融工程专业学生。对本国经济改革历程有深入研究，特别关注从计划经济到市场经济的转型路径。本次实习负责梳理越南从战后到新时代的发展轨迹。</p>
         <div class="intern-topic">
           <span class="dot"></span>
-          研究课题：越南二战后的发展
+          <span data-i18n="minhTopic">研究课题：越南二战后的发展</span>
         </div>
       </div>
     </div>
@@ -694,26 +740,26 @@ footer .footer-brand {
 <section id="overview" style="background: var(--warm);">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">项目简介</div>
-      <h2 class="section-title">关于这个项目</h2>
+      <div class="section-label" data-i18n="overviewLabel">项目简介</div>
+      <h2 class="section-title" data-i18n="overviewTitle">关于这个项目</h2>
     </div>
 
     <div class="overview-grid reveal">
       <div class="overview-text">
-        <p>本项目是研究院2026年暑期实习计划的一部分，为期四周。两位来自东南亚的国际实习生——Justin（印度尼西亚）和Minh（越南）——在导师 Jerry 的指导下，围绕亚洲经济发展展开系列研究。</p>
-        <p>项目从各自国家的战后发展入手，逐步拓展到亚洲经济崛起的宏观叙事，再到中国"一带一路"倡议的国际合作分析，最终以开放式讨论收尾，探讨作为未来建设者如何更好地推动国际合作与发展。</p>
-        <p>每周四下午进行汇报展示与讨论，通过比较研究深化对亚洲经济体发展路径的理解。</p>
+        <p data-i18n="overviewP1">本项目是研究院2026年暑期实习计划的一部分，为期四周。两位来自东南亚的国际实习生——Justin（印度尼西亚）和Minh（越南）——在导师 Jerry 的指导下，围绕亚洲经济发展展开系列研究。</p>
+        <p data-i18n="overviewP2">项目从各自国家的战后发展入手，逐步拓展到亚洲经济崛起的宏观叙事，再到中国"一带一路"倡议的国际合作分析，最终以开放式讨论收尾，探讨作为未来建设者如何更好地推动国际合作与发展。</p>
+        <p data-i18n="overviewP3">每周四下午进行汇报展示与讨论，通过比较研究深化对亚洲经济体发展路径的理解。</p>
       </div>
 
       <div class="overview-sidebar">
-        <h3>项目亮点</h3>
+        <h3 data-i18n="sidebarTitle">项目亮点</h3>
         <ul>
-          <li>跨国比较视角：印尼 vs 越南</li>
-          <li>从历史到未来的完整叙事链</li>
-          <li>涵盖经济、政治、外交多维度</li>
-          <li>关注亚洲崛起与三次危机</li>
-          <li>探讨"一带一路"合作机遇</li>
-          <li>前瞻性开放式思考</li>
+          <li data-i18n="sidebarLi1">跨国比较视角：印尼 vs 越南</li>
+          <li data-i18n="sidebarLi2">从历史到未来的完整叙事链</li>
+          <li data-i18n="sidebarLi3">涵盖经济、政治、外交多维度</li>
+          <li data-i18n="sidebarLi4">关注亚洲崛起与三次危机</li>
+          <li data-i18n="sidebarLi5">探讨"一带一路"合作机遇</li>
+          <li data-i18n="sidebarLi6">前瞻性开放式思考</li>
         </ul>
       </div>
     </div>
@@ -724,9 +770,9 @@ footer .footer-brand {
 <section class="timeline-section" id="tasks">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">任务安排</div>
-      <h2 class="section-title" style="color:#fff;">四周研究计划</h2>
-      <p class="section-desc">从自身国家到亚洲全局，从历史回顾到未来展望，层层递进的研究旅程。</p>
+      <div class="section-label" data-i18n="timelineLabel">任务安排</div>
+      <h2 class="section-title" style="color:#fff;" data-i18n="timelineTitle">四周研究计划</h2>
+      <p class="section-desc" data-i18n="timelineDesc">从自身国家到亚洲全局，从历史回顾到未来展望，层层递进的研究旅程。</p>
     </div>
 
     <div class="timeline reveal">
@@ -737,16 +783,16 @@ footer .footer-brand {
           <div class="tl-week">Week 1</div>
         </div>
         <div class="tl-content">
-          <h3>印度尼西亚和越南二战后的发展</h3>
-          <p>梳理各自国家从二战后到现在的整体发展情况，涵盖重要领导人时期、重要历史事件，以及对内和对外的情况。每人展示不超过25分钟。</p>
+          <h3 data-i18n="w1Title">印度尼西亚和越南二战后的发展</h3>
+          <p data-i18n="w1Desc">梳理各自国家从二战后到现在的整体发展情况，涵盖重要领导人时期、重要历史事件，以及对内和对外的情况。每人展示不超过25分钟。</p>
           <div class="tl-tags">
-            <span class="tl-tag">重要领导人</span>
-            <span class="tl-tag">历史事件</span>
-            <span class="tl-tag">内政外交</span>
+            <span class="tl-tag" data-i18n="w1Tag1">重要领导人</span>
+            <span class="tl-tag" data-i18n="w1Tag2">历史事件</span>
+            <span class="tl-tag" data-i18n="w1Tag3">内政外交</span>
           </div>
           <div class="tl-links">
-            <a href="indonesia.html" class="tl-link primary">🇮🇩 Justin 的汇报 →</a>
-            <a href="vietnam.html" class="tl-link primary">🇻🇳 Minh 的汇报 →</a>
+            <a href="indonesia.html" class="tl-link primary" data-i18n="w1Link1">🇮🇩 Justin 的汇报 →</a>
+            <a href="vietnam.html" class="tl-link primary" data-i18n="w1Link2">🇻🇳 Minh 的汇报 →</a>
           </div>
         </div>
       </div>
@@ -758,13 +804,13 @@ footer .footer-brand {
           <div class="tl-week">Week 2</div>
         </div>
         <div class="tl-content">
-          <h3>亚洲国家二战后的崛起与三次危机</h3>
-          <p>按时间线梳理亚洲国家二战后如何崛起，以及当前面临的问题。重点关注日本、亚洲四小龙、亚洲四小虎，以及1997年亚洲金融危机、2008年全球金融危机、2019年新冠疫情三次危机。</p>
+          <h3 data-i18n="w2Title">亚洲国家二战后的崛起与三次危机</h3>
+          <p data-i18n="w2Desc">按时间线梳理亚洲国家二战后如何崛起，以及当前面临的问题。重点关注日本、亚洲四小龙、亚洲四小虎，以及1997年亚洲金融危机、2008年全球金融危机、2019年新冠疫情三次危机。</p>
           <div class="tl-tags">
-            <span class="tl-tag">日本</span>
-            <span class="tl-tag">四小龙</span>
-            <span class="tl-tag">四小虎</span>
-            <span class="tl-tag">三次危机</span>
+            <span class="tl-tag" data-i18n="w2Tag1">日本</span>
+            <span class="tl-tag" data-i18n="w2Tag2">四小龙</span>
+            <span class="tl-tag" data-i18n="w2Tag3">四小虎</span>
+            <span class="tl-tag" data-i18n="w2Tag4">三次危机</span>
           </div>
         </div>
       </div>
@@ -776,12 +822,12 @@ footer .footer-brand {
           <div class="tl-week">Week 3</div>
         </div>
         <div class="tl-content">
-          <h3>中国"一带一路"倡议（BRI）</h3>
-          <p>探讨中国"一带一路"倡议的成果与不足，分析其对中国自身及参与国（特别是印尼和越南）的利益考量与影响。</p>
+          <h3 data-i18n="w3Title">中国"一带一路"倡议（BRI）</h3>
+          <p data-i18n="w3Desc">探讨中国"一带一路"倡议的成果与不足，分析其对中国自身及参与国（特别是印尼和越南）的利益考量与影响。</p>
           <div class="tl-tags">
             <span class="tl-tag">BRI</span>
-            <span class="tl-tag">国际合作</span>
-            <span class="tl-tag">利益分析</span>
+            <span class="tl-tag" data-i18n="w3Tag2">国际合作</span>
+            <span class="tl-tag" data-i18n="w3Tag3">利益分析</span>
           </div>
         </div>
       </div>
@@ -793,12 +839,12 @@ footer .footer-brand {
           <div class="tl-week">Week 4</div>
         </div>
         <div class="tl-content">
-          <h3>如果我们是建设者</h3>
-          <p>基于前三周的回顾与思考，进行前瞻性开放式讨论。探讨作为未来建设者如何做得更好，如何保持开放态度、避免意识形态割裂、寻求更好的共识。</p>
+          <h3 data-i18n="w4Title">如果我们是建设者</h3>
+          <p data-i18n="w4Desc">基于前三周的回顾与思考，进行前瞻性开放式讨论。探讨作为未来建设者如何做得更好，如何保持开放态度、避免意识形态割裂、寻求更好的共识。</p>
           <div class="tl-tags">
-            <span class="tl-tag">前瞻思考</span>
-            <span class="tl-tag">国际合作</span>
-            <span class="tl-tag">共识构建</span>
+            <span class="tl-tag" data-i18n="w4Tag1">前瞻思考</span>
+            <span class="tl-tag" data-i18n="w4Tag2">国际合作</span>
+            <span class="tl-tag" data-i18n="w4Tag3">共识构建</span>
           </div>
         </div>
       </div>
@@ -811,8 +857,8 @@ footer .footer-brand {
   <div class="container">
     <div class="reveal">
       <div class="section-label">My Pages</div>
-      <h2 class="section-title">汇报展示</h2>
-      <p class="section-desc">第一周任务的网页版汇报，详细梳理了印度尼西亚和越南二战后的发展历程。</p>
+      <h2 class="section-title" data-i18n="pagesTitle">汇报展示</h2>
+      <p class="section-desc" data-i18n="pagesDesc">第一周任务的网页版汇报，详细梳理了印度尼西亚和越南二战后的发展历程。</p>
     </div>
 
     <div class="pages-grid reveal">
@@ -820,13 +866,13 @@ footer .footer-brand {
         <div class="page-card-preview indonesia-bg">
           <div class="preview-pattern"></div>
           <span class="preview-author">Justin</span>
-          <div class="preview-title">印度尼西亚：从独立到现代国家</div>
+          <div class="preview-title" data-i18n="pageIdTitle">印度尼西亚：从独立到现代国家</div>
         </div>
         <div class="page-card-body">
-          <p>从1945年独立宣言到改革时代，梳理印尼七十余年的国家发展之路——苏加诺、苏哈托、佐科到普拉博沃。</p>
+          <p data-i18n="pageIdDesc">从1945年独立宣言到改革时代，梳理印尼七十余年的国家发展之路——苏加诺、苏哈托、佐科到普拉博沃。</p>
           <div class="page-meta">
-            <span>2026.07.16 · 第一次汇报</span>
-            <span class="view-btn">查看 →</span>
+            <span data-i18n="pageDate1">2026.07.16 · 第一次汇报</span>
+            <span class="view-btn" data-i18n="viewBtn">查看 →</span>
           </div>
         </div>
       </a>
@@ -835,13 +881,13 @@ footer .footer-brand {
         <div class="page-card-preview vietnam-bg">
           <div class="preview-pattern"></div>
           <span class="preview-author">Minh</span>
-          <div class="preview-title">越南：从战后到新时代的发展</div>
+          <div class="preview-title" data-i18n="pageVnTitle">越南：从战后到新时代的发展</div>
         </div>
         <div class="page-card-body">
-          <p>从抗法抗美到革新开放，从计划经济到全球供应链——越南如何用八十年完成从碎片化农业社会到制造业中心的蜕变。</p>
+          <p data-i18n="pageVnDesc">从抗法抗美到革新开放，从计划经济到全球供应链——越南如何用八十年完成从碎片化农业社会到制造业中心的蜕变。</p>
           <div class="page-meta">
-            <span>2026.07.16 · 第一次汇报</span>
-            <span class="view-btn">查看 →</span>
+            <span data-i18n="pageDate2">2026.07.16 · 第一次汇报</span>
+            <span class="view-btn" data-i18n="viewBtn2">查看 →</span>
           </div>
         </div>
       </a>
@@ -851,8 +897,8 @@ footer .footer-brand {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">研究院实习项目 · 亚洲经济发展研究</div>
-  <p>Justin & Minh · 2026年7月 – 8月</p>
+  <div class="footer-brand" data-i18n="footerBrand">研究院实习项目 · 亚洲经济发展研究</div>
+  <p data-i18n="footerSub">Justin & Minh · 2026年7月 – 8月</p>
 </footer>
 
 <script>
@@ -866,6 +912,149 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// i18n
+const i18n = {
+  zh: {
+    heroTitle: '亚洲经济发展<br><em>研究与对话</em>',
+    heroSub: '两位来自东南亚的实习生，用四周时间探索各自国家的战后发展之路，<br>在历史与未来之间寻找亚洲的答案。',
+    heroMeta1: '📍 研究院',
+    heroMeta2: '📅 2026年7月 – 8月',
+    internsLabel: '团队成员',
+    internsTitle: '两位实习生',
+    internsDesc: '来自印度尼西亚和越南，分别研究自己国家的战后发展历程，在比较与对话中理解亚洲经济的过去与未来。',
+    justinOrigin: '印度尼西亚 · Indonesia',
+    justinBio: '来自印度尼西亚的金融工程专业学生。擅长用数据分析视角审视历史进程，关注东南亚经济体在全球化中的角色变迁。本次实习负责梳理印尼从独立到现代国家的发展脉络。',
+    justinTopic: '研究课题：印度尼西亚二战后的发展',
+    minhName: 'Bui Cao Minh（裴高明）',
+    minhOrigin: '越南 · Vietnam',
+    minhBio: '来自越南的金融工程专业学生。对本国经济改革历程有深入研究，特别关注从计划经济到市场经济的转型路径。本次实习负责梳理越南从战后到新时代的发展轨迹。',
+    minhTopic: '研究课题：越南二战后的发展',
+    overviewLabel: '项目简介',
+    overviewTitle: '关于这个项目',
+    overviewP1: '本项目是研究院2026年暑期实习计划的一部分，为期四周。两位来自东南亚的国际实习生——Justin（印度尼西亚）和Minh（越南）——在导师 Jerry 的指导下，围绕亚洲经济发展展开系列研究。',
+    overviewP2: '项目从各自国家的战后发展入手，逐步拓展到亚洲经济崛起的宏观叙事，再到中国"一带一路"倡议的国际合作分析，最终以开放式讨论收尾，探讨作为未来建设者如何更好地推动国际合作与发展。',
+    overviewP3: '每周四下午进行汇报展示与讨论，通过比较研究深化对亚洲经济体发展路径的理解。',
+    sidebarTitle: '项目亮点',
+    sidebarLi1: '跨国比较视角：印尼 vs 越南',
+    sidebarLi2: '从历史到未来的完整叙事链',
+    sidebarLi3: '涵盖经济、政治、外交多维度',
+    sidebarLi4: '关注亚洲崛起与三次危机',
+    sidebarLi5: '探讨"一带一路"合作机遇',
+    sidebarLi6: '前瞻性开放式思考',
+    timelineLabel: '任务安排',
+    timelineTitle: '四周研究计划',
+    timelineDesc: '从自身国家到亚洲全局，从历史回顾到未来展望，层层递进的研究旅程。',
+    w1Title: '印度尼西亚和越南二战后的发展',
+    w1Desc: '梳理各自国家从二战后到现在的整体发展情况，涵盖重要领导人时期、重要历史事件，以及对内和对外的情况。每人展示不超过25分钟。',
+    w1Tag1: '重要领导人', w1Tag2: '历史事件', w1Tag3: '内政外交',
+    w1Link1: '🇮🇩 Justin 的汇报 →',
+    w1Link2: '🇻🇳 Minh 的汇报 →',
+    w2Title: '亚洲国家二战后的崛起与三次危机',
+    w2Desc: '按时间线梳理亚洲国家二战后如何崛起，以及当前面临的问题。重点关注日本、亚洲四小龙、亚洲四小虎，以及1997年亚洲金融危机、2008年全球金融危机、2019年新冠疫情三次危机。',
+    w2Tag1: '日本', w2Tag2: '四小龙', w2Tag3: '四小虎', w2Tag4: '三次危机',
+    w3Title: '中国"一带一路"倡议（BRI）',
+    w3Desc: '探讨中国"一带一路"倡议的成果与不足，分析其对中国自身及参与国（特别是印尼和越南）的利益考量与影响。',
+    w3Tag2: '国际合作', w3Tag3: '利益分析',
+    w4Title: '如果我们是建设者',
+    w4Desc: '基于前三周的回顾与思考，进行前瞻性开放式讨论。探讨作为未来建设者如何做得更好，如何保持开放态度、避免意识形态割裂、寻求更好的共识。',
+    w4Tag1: '前瞻思考', w4Tag2: '国际合作', w4Tag3: '共识构建',
+    pagesTitle: '汇报展示',
+    pagesDesc: '第一周任务的网页版汇报，详细梳理了印度尼西亚和越南二战后的发展历程。',
+    pageIdTitle: '印度尼西亚：从独立到现代国家',
+    pageIdDesc: '从1945年独立宣言到改革时代，梳理印尼七十余年的国家发展之路——苏加诺、苏哈托、佐科到普拉博沃。',
+    pageDate1: '2026.07.16 · 第一次汇报',
+    viewBtn: '查看 →',
+    pageVnTitle: '越南：从战后到新时代的发展',
+    pageVnDesc: '从抗法抗美到革新开放，从计划经济到全球供应链——越南如何用八十年完成从碎片化农业社会到制造业中心的蜕变。',
+    pageDate2: '2026.07.16 · 第一次汇报',
+    viewBtn2: '查看 →',
+    footerBrand: '研究院实习项目 · 亚洲经济发展研究',
+    footerSub: 'Justin & Minh · 2026年7月 – 8月'
+  },
+  en: {
+    heroTitle: 'Asia\'s Economic Development<br><em>Research & Dialogue</em>',
+    heroSub: 'Two interns from Southeast Asia spend four weeks exploring their countries\'<br>post-war development paths, seeking Asia\'s answers between history and the future.',
+    heroMeta1: '📍 Research Institute',
+    heroMeta2: '📅 Jul – Aug 2026',
+    internsLabel: 'TEAM',
+    internsTitle: 'Our Interns',
+    internsDesc: 'From Indonesia and Vietnam, each researching their own country\'s post-war development, understanding Asia\'s economic past and future through comparison and dialogue.',
+    justinOrigin: 'Indonesia',
+    justinBio: 'A Financial Engineering student from Indonesia. Skilled at examining historical processes through data analysis, with a focus on how Southeast Asian economies evolve in globalization. Responsible for tracing Indonesia\'s development from independence to the modern era.',
+    justinTopic: 'Topic: Indonesia\'s Post-WWII Development',
+    minhName: 'Bui Cao Minh',
+    minhOrigin: 'Vietnam',
+    minhBio: 'A Financial Engineering student from Vietnam. With deep research into his country\'s economic reform, particularly the transition from planned to market economy. Responsible for tracing Vietnam\'s development from post-war to the new era.',
+    minhTopic: 'Topic: Vietnam\'s Post-WWII Development',
+    overviewLabel: 'PROJECT',
+    overviewTitle: 'About This Project',
+    overviewP1: 'This project is part of the Research Institute\'s 2026 Summer Internship Program, spanning four weeks. Two international interns from Southeast Asia — Justin (Indonesia) and Minh (Vietnam) — under mentor Jerry\'s guidance, conduct a series of studies on Asian economic development.',
+    overviewP2: 'Starting from each country\'s post-war development, the project expands to the macro narrative of Asia\'s economic rise, then to the analysis of China\'s Belt and Road Initiative, and concludes with an open discussion on how future builders can better promote international cooperation and development.',
+    overviewP3: 'Presentations and discussions are held every Thursday afternoon, deepening understanding of Asian economic development paths through comparative research.',
+    sidebarTitle: 'Highlights',
+    sidebarLi1: 'Cross-national comparison: Indonesia vs Vietnam',
+    sidebarLi2: 'Complete narrative from history to future',
+    sidebarLi3: 'Multi-dimensional: economic, political, diplomatic',
+    sidebarLi4: 'Focus on Asia\'s rise and three crises',
+    sidebarLi5: 'Exploring BRI cooperation opportunities',
+    sidebarLi6: 'Forward-looking open discussion',
+    timelineLabel: 'SCHEDULE',
+    timelineTitle: 'Four-Week Research Plan',
+    timelineDesc: 'From home country to all of Asia, from historical review to future outlook — a progressive research journey.',
+    w1Title: 'Post-WWII Development of Indonesia and Vietnam',
+    w1Desc: 'Tracing each country\'s overall development from post-WWII to the present, covering key leadership periods, major historical events, and domestic and foreign affairs. Each presentation is within 25 minutes.',
+    w1Tag1: 'Key Leaders', w1Tag2: 'Historical Events', w1Tag3: 'Domestic & Foreign Affairs',
+    w1Link1: '🇮🇩 Justin\'s Report →',
+    w1Link2: '🇻🇳 Minh\'s Report →',
+    w2Title: 'Asia\'s Post-WWII Rise and Three Crises',
+    w2Desc: 'A chronological overview of how Asian nations rose after WWII and the challenges they face today. Focusing on Japan, the Four Asian Tigers, the Four Asian Cubs, and three major crises: the 1997 Asian Financial Crisis, the 2008 Global Financial Crisis, and the 2019 COVID-19 Pandemic.',
+    w2Tag1: 'Japan', w2Tag2: 'Four Tigers', w2Tag3: 'Four Cubs', w2Tag4: 'Three Crises',
+    w3Title: 'China\'s Belt and Road Initiative (BRI)',
+    w3Desc: 'Exploring the achievements and shortcomings of China\'s Belt and Road Initiative, analyzing its benefits and impacts on China itself and participating countries, especially Indonesia and Vietnam.',
+    w3Tag2: 'International Cooperation', w3Tag3: 'Benefit Analysis',
+    w4Title: 'If We Were the Builders',
+    w4Desc: 'Building on the reflections from the first three weeks, a forward-looking open discussion. Exploring how future builders can do better, stay open-minded, avoid ideological division, and seek broader consensus.',
+    w4Tag1: 'Forward Thinking', w4Tag2: 'International Cooperation', w4Tag3: 'Consensus Building',
+    pagesTitle: 'Presentations',
+    pagesDesc: 'Web-based reports from Week 1, detailing the post-WWII development journeys of Indonesia and Vietnam.',
+    pageIdTitle: 'Indonesia: From Independence to Modern Nation',
+    pageIdDesc: 'From the 1945 Declaration of Independence to the Reform era — tracing over 70 years of national development: Sukarno, Suharto, Jokowi, to Prabowo.',
+    pageDate1: 'Jul 16, 2026 · 1st Report',
+    viewBtn: 'View →',
+    pageVnTitle: 'Vietnam: From Postwar to a New Era',
+    pageVnDesc: 'From resisting France and the US to Doi Moi reforms, from planned economy to global supply chains — how Vietnam transformed from a fragmented agricultural society to a manufacturing hub in 80 years.',
+    pageDate2: 'Jul 16, 2026 · 1st Report',
+    viewBtn2: 'View →',
+    footerBrand: 'Research Internship · Asian Economic Development Studies',
+    footerSub: 'Justin & Minh · Jul – Aug 2026'
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'zh';
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key] !== undefined) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.title = lang === 'zh'
+    ? '研究院实习项目 · 亚洲经济发展研究'
+    : 'Research Internship · Asian Economic Development';
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+  currentLang = lang;
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'zh' ? 'en' : 'zh');
+}
+
+applyLang(currentLang);
 </script>
 
 </body>
