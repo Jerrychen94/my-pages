@@ -23,6 +23,7 @@
 | 页面 | 说明 |
 |------|------|
 | [AI 智能体学习笔记](https://jerrychen94.github.io/my-pages/ai-agent/index.html) | Qwen Code 使用经验、Skills 编写、MCP 接入与应用场景 |
+| [数学建模入门导论](https://jerrychen94.github.io/my-pages/math-modeling-lesson1.html) | 数模培训第1课 — 数学建模基础概念与方法论 |
 
 ## 技术栈
 
