@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印度尼西亚：从独立到现代国家 (1945–至今)</title>
+<style>
+  :root {
+    --primary: #B85042;
+    --primary-dark: #8B3A30;
+    --accent: #E8A87C;
+    --bg: #FDF6F0;
+    --card-bg: #FFFFFF;
+    --text: #2D2D2D;
+    --text-light: #6B6B6B;
+    --border: #E8D5C4;
+    --highlight: #FFF3E0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.4em; font-weight: 700; margin-bottom: 12px; letter-spacing: 2px; }
+  .hero .subtitle { font-size: 1.1em; opacity: 0.9; margin-bottom: 8px; }
+  .hero .meta { font-size: 0.9em; opacity: 0.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+  .toc {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--primary);
+  }
+  .toc h2 { font-size: 1.2em; color: var(--primary); margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 1.5em;
+    color: var(--primary);
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section .period {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .section h3 {
+    font-size: 1.1em;
+    color: var(--primary-dark);
+    margin: 20px 0 8px;
+  }
+  .section p { margin-bottom: 12px; }
+  .section ul { padding-left: 20px; margin-bottom: 12px; }
+  .section li { margin-bottom: 6px; }
+
+  .highlight-box {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .highlight-box strong { color: var(--primary-dark); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .col-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .col-card h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 120px;
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .stat-item .label {
+    font-size: 0.8em;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 16px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+    padding-left: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+  .timeline-item .year {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.9em;
+  }
+
+  .president-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .president-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+  }
+  .president-card .name {
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 1em;
+  }
+  .president-card .years {
+    font-size: 0.8em;
+    color: var(--text-light);
+  }
+  .president-card .desc {
+    font-size: 0.9em;
+    margin-top: 6px;
+  }
+
+  .discussion {
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFF3E0 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+  }
+  .discussion h2 { color: var(--primary); margin-bottom: 14px; }
+  .discussion .qa { margin-bottom: 14px; }
+  .discussion .q { font-weight: 600; color: var(--primary-dark); margin-bottom: 4px; }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-light);
+    font-size: 0.85em;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .two-col, .president-grid { grid-template-columns: 1fr; }
+    .section { padding: 20px; }
+    .stat-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>印度尼西亚</h1>
+  <div class="subtitle">从独立到现代国家 (1945–至今)</div>
+  <div class="meta">Justin Ivan Jorianto · 2026年7月16日汇报</div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1">独立与民族革命 (1945–1949)</a></li>
+      <li><a href="#s2">自由民主时期 (1950–1959)</a></li>
+      <li><a href="#s3">指导民主时期 (1959–1965)</a></li>
+      <li><a href="#s4">九三〇运动与政权更迭 (1965)</a></li>
+      <li><a href="#s5">新秩序时期 (1966–1998)</a></li>
+      <li><a href="#s6">亚洲金融危机与苏哈托下台 (1997–1998)</a></li>
+      <li><a href="#s7">改革时代 (1998至今)</a></li>
+      <li><a href="#s8">讨论与问答</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <h2>一、独立与民族革命</h2>
+    <span class="period">1945–1949</span>
+    <p>1945年8月17日，日本投降后，印度尼西亚宣布独立。苏加诺出任首任总统，穆罕默德·哈达任副总统。此前荷兰已殖民印尼三百年，日本占领结束后，荷兰试图重新殖民，由此引发四年武装冲突与外交斗争。</p>
+
+    <h3>外交博弈</h3>
+    <ul>
+      <li>印尼采取国际外交策略争取各国承认</li>
+      <li>联合国出面调解</li>
+      <li>国际压力特别是美国的施压促使荷兰走向谈判桌</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>结果：</strong>1949年12月，荷兰正式承认印尼主权。印尼成为印度尼西亚联邦共和国，包含16个联邦州。部分民众对联邦制不满，1950年8月恢复为单一制国家，实行中央集权政府。
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2>二、自由民主时期</h2>
+    <span class="period">1950–1959</span>
+    <p>1950年起印尼采用议会民主制，但引发诸多问题：总理频繁更替、联合政府软弱、地方叛乱不断。</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>1955年联邦选举</h4>
+        <p>印尼首次民主选举，被认为公正公平。四大参与政党为PNI、Masyumi、NU和PKI（印尼共产党）。</p>
+      </div>
+      <div class="col-card">
+        <h4>1955年万隆会议</h4>
+        <p>亚非国家共商反殖民运动，为不结盟运动奠定基础，大幅提升印尼的国际地位。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2>三、指导民主时期</h2>
+    <span class="period">1959–1965</span>
+    <p>由于自由民主时期问题频出，苏加诺总统解散议会，恢复1945年宪法，推行指导民主。</p>
+
+    <h3>核心意识形态：纳萨科姆 (Nasakom)</h3>
+    <p>民族主义、宗教和共产主义的混合，试图将军方、宗教团体和印尼共产党统一到一种意识形态下。</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>经济困境</h4>
+        <p>恶性通货膨胀、经济恶化、财政管理不善。</p>
+      </div>
+      <div class="col-card">
+        <h4>外交政策</h4>
+        <p>强烈反西方，与中国和苏联关系密切。视马来西亚为英国新殖民项目，1965年马来西亚成为联合国安理会成员后，印尼退出联合国。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2>四、九三〇运动与政权更迭</h2>
+    <span class="period">1965年</span>
+    <p>1965年9月30日至10月1日是印尼历史上最重要的转折点之一。</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>官方叙事</h4>
+        <p>七名高级陆军将领遭绑架，六人被杀一人幸存。印尼共产党被指控策划绑架，目的是推翻苏加诺总统建立共产主义国家。将领们被描绘为保护苏加诺的国家英雄。</p>
+      </div>
+      <div class="col-card">
+        <h4>基于历史研究的另一种解读</h4>
+        <p>将领们正计划推翻苏加诺建立反共政府，印尼共产党作为苏加诺的政治盟友采取行动保护政府。也有说法认为这一场景由美国中情局策划，苏哈托将军在其中扮演关键角色以巩固权力。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>后果：</strong>苏哈托将军取得军事控制权，随后展开大规模反共清洗，估计死亡人数50万至100万，印尼共产党被彻底摧毁。1966年3月，苏加诺在武装胁迫下签署三月十一日命令书，将权力移交给苏哈托。苏哈托巩固权力后取代苏加诺成为总统，苏加诺被软禁直至1970年去世。
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2>五、新秩序时期</h2>
+    <span class="period">1966–1998</span>
+    <p>苏哈托执政32年，是印尼任期最长的总统。政府高度集权，军方发挥重大政治作用，政治反对派受到严厉限制。</p>
+
+    <h3>经济政策与成就</h3>
+    <p>转向资本主义、吸引外资、维持宏观经济稳定，政府与被称为"伯克利黑帮"的经济学家密切合作。</p>
+    <ul>
+      <li>GDP快速增长，基础设施扩张</li>
+      <li>绿色革命提高大米产量</li>
+      <li>贫困大幅下降</li>
+      <li>印尼成为东亚增长最快的经济体之一</li>
+    </ul>
+
+    <h3>严重问题</h3>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">$150–350亿</div>
+        <div class="label">苏哈托32年间侵吞金额</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">32年</div>
+        <div class="label">苏哈托执政时长</div>
+      </div>
+    </div>
+    <p>腐败、裙带关系和官僚资本主义盛行。苏哈托被广泛认为是世界历史上个人腐败金额最高的国家元首。</p>
+
+    <h3>外交与争议</h3>
+    <ul>
+      <li>重返联合国，专注西方合作</li>
+      <li>1967年成为东盟创始成员国</li>
+      <li>入侵东帝汶，国际批评持续数十年，入侵得到美国军方支持</li>
+      <li>巴布亚格拉斯伯格金矿由美国公司自由港麦克莫兰运营，生产的超过1000吨黄金大多使美国受益</li>
+    </ul>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2>六、亚洲金融危机与苏哈托下台</h2>
+    <span class="period">1997–1998</span>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">2500→17000</div>
+        <div class="label">印尼盾对美元汇率暴跌</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">32年</div>
+        <div class="label">苏哈托执政终结</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>经济影响</h4>
+        <p>印尼盾崩溃，银行危机，大规模失业，通胀飙升。</p>
+      </div>
+      <div class="col-card">
+        <h4>社会影响</h4>
+        <p>全国爆发骚乱和暴力，许多华裔印尼人成为暴力目标，活动人士遭绑架。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>结果：</strong>1998年5月21日，苏哈托执政32年后终于辞职，副总统哈比比继任总统。
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2>七、改革时代</h2>
+    <span class="period">1998至今</span>
+
+    <div class="president-grid">
+      <div class="president-card">
+        <div class="name">哈比比</div>
+        <div class="years">1998–1999</div>
+        <div class="desc">推行新闻自由、政党自由化和权力下放改革。东帝汶1999年公投独立。</div>
+      </div>
+      <div class="president-card">
+        <div class="name">瓦希德</div>
+        <div class="years">1999–2001</div>
+        <div class="desc">扩大公民自由、改善少数群体权利、促进宗教多元主义。政治冲突众多，最终被弹劾。</div>
+      </div>
+      <div class="president-card">
+        <div class="name">梅加瓦蒂</div>
+        <div class="years">2001–2004</div>
+        <div class="desc">实现政治稳定和民主巩固。面临恐怖主义威胁，2002年巴厘岛爆炸案是最大事件。</div>
+      </div>
+      <div class="president-card">
+        <div class="name">苏西洛</div>
+        <div class="years">2004–2014</div>
+        <div class="desc">首位直选总统，执政十年。经济稳定增长，2005年亚齐和平协议结束数十年冲突。</div>
+      </div>
+    </div>
+
+    <h3>佐科·维多多 (2014–2024)</h3>
+    <p>首位非军方或政治精英出身的总统。</p>
+    <div class="two-col">
+      <div class="col-card">
+        <h4>主要成就</h4>
+        <ul>
+          <li>大规模基础设施投资：收费公路、港口、机场、地铁、高铁、水坝</li>
+          <li>改善医疗和社会保障</li>
+          <li>成功应对新冠疫情和经济复苏</li>
+          <li>下游工业化政策，减少原材料出口</li>
+          <li>将首都从雅加达迁至东加里曼丹的努山塔拉</li>
+          <li>2022年主办G20峰会</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h4>主要问题</h4>
+        <ul>
+          <li>民主倒退</li>
+          <li>森林砍伐持续</li>
+          <li>裙带关系指控</li>
+          <li>腐败丑闻</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>普拉博沃·苏比安托 (2024至今)</h3>
+    <p>现任总统，延续基础设施和下游工业化政策，推进努山塔拉建设，推出学生免费营养餐计划，强调粮食安全、能源安全和国防现代化。外交上维持不结盟自由积极外交，寻求与东盟、中国、美国、日本、澳大利亚、欧洲等广泛伙伴加强合作。</p>
+
+    <h3>现任政府面临的问题</h3>
+    <ul>
+      <li>印尼股市下跌，政策不支持资本市场和投资者信心</li>
+      <li>裙带关系和政治王朝</li>
+      <li>副总统缺乏经验，部长多为总统和前总统亲密盟友</li>
+      <li>执法腐败</li>
+      <li>军方介入民事事务大幅增加</li>
+      <li>国有企业腐败案造成978.5万亿印尼盾（约590亿美元）损失</li>
+      <li>免费营养餐计划出现中毒事件和管理问题</li>
+      <li>频繁出访被认为昂贵过度</li>
+      <li>言论自由受限</li>
+      <li>主权基金争议</li>
+    </ul>
+  </div>
+
+  <!-- 讨论 -->
+  <div class="discussion" id="s8">
+    <h2>讨论与问答</h2>
+    <div class="qa">
+      <div class="q">问：印尼独立以来最重要的总统是谁？最大的负面影响是什么？</div>
+      <p>Justin认为佐科·维多多是最重要的总统，因为他成功将印尼建设为更发达国家，基础设施项目快速推进，与许多国家特别是中国开展合作。在其任期内印尼发展速度超过前任总统。负面影响方面，Justin认为腐败案件遍布全国，至今仍未消除。</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  研究院实习生第一次汇报 · 2026年7月16日
+</footer>
+
+</body>
+</html>

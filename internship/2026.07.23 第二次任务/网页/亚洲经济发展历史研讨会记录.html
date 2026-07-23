@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亚洲经济发展历史研讨会记录 (2026.07.23)</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --accent: #b8860b;
+    --accent-light: #d4a843;
+    --bg: #f5f3ef;
+    --card-bg: #ffffff;
+    --text: #2d2d2d;
+    --text-light: #6b6b6b;
+    --border: #d8cfc2;
+    --highlight: #faf6ee;
+    --teal: #2a6b6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    font-size: 16px;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 60%, #0a1a2e 100%);
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 600px 400px at 80% 20%, rgba(184,134,11,0.12), transparent);
+  }
+  .hero h1 { font-size: 2.2em; font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; position: relative; }
+  .hero .subtitle { font-size: 1.05em; opacity: 0.85; margin-bottom: 8px; position: relative; }
+  .hero .meta { font-size: 0.88em; opacity: 0.65; position: relative; }
+  .hero .meta-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 16px; position: relative; }
+  .hero .meta-item { background: rgba(255,255,255,0.08); padding: 6px 16px; border-radius: 100px; font-size: 0.85em; backdrop-filter: blur(4px); }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+
+  /* TOC */
+  .toc {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--accent);
+  }
+  .toc h2 { font-size: 1.15em; color: var(--primary); margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { color: var(--accent); text-decoration: underline; }
+  .toc .sub { padding-left: 18px; list-style-type: disc; }
+
+  /* Section card */
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 1.45em;
+    color: var(--primary);
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section .section-sub {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .section h3 {
+    font-size: 1.08em;
+    color: var(--primary-dark);
+    margin: 22px 0 8px;
+  }
+  .section p { margin-bottom: 12px; }
+  .section ul, .section ol { padding-left: 20px; margin-bottom: 12px; }
+  .section li { margin-bottom: 6px; }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .highlight-box strong { color: var(--primary-dark); }
+
+  /* Stat row */
+  .stat-row {
+    display: flex;
+    gap: 14px;
+    margin: 18px 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 110px;
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-item .label {
+    font-size: 0.78em;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* Comparison grid */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .compare-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--accent);
+  }
+  .compare-card h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+  .compare-card p {
+    font-size: 0.92em;
+    margin-bottom: 0;
+  }
+
+  /* Country card */
+  .country-card {
+    background: linear-gradient(135deg, #faf8f4 0%, #f5f0e8 100%);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 18px 0;
+    border: 1px solid var(--border);
+  }
+  .country-card h3 {
+    color: var(--primary);
+    margin: 0 0 10px;
+    font-size: 1.15em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .country-card .flag { font-size: 1.4em; }
+
+  /* Discussion quote */
+  .discussion-quote {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8eef4 100%);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    border-left: 4px solid var(--teal);
+  }
+  .discussion-quote .speaker {
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+  .discussion-quote p { margin-bottom: 8px; font-size: 0.95em; }
+  .discussion-quote p:last-child { margin-bottom: 0; }
+
+  /* Key takeaway */
+  .takeaway {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  .takeaway h4 { color: var(--accent-light); margin-bottom: 10px; font-size: 1.05em; }
+  .takeaway ul { padding-left: 18px; }
+  .takeaway li { margin-bottom: 6px; opacity: 0.9; font-size: 0.95em; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--text-light);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+  .footer a { color: var(--primary); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .stat-row { flex-direction: column; }
+    .section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>亚洲经济发展历史研讨会记录</h1>
+  <p class="subtitle">二战后亚洲经济体崛起的历史经验与当代挑战</p>
+  <p class="meta">亚洲"四小龙"与"四小虎"经济发展模式比较研究</p>
+  <div class="meta-row">
+    <span class="meta-item">📅 2026年7月23日</span>
+    <span class="meta-item">💻 线上会议 (腾讯会议)</span>
+    <span class="meta-item">🕐 15:27 – 17:15</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>📑 目录</h2>
+    <ol>
+      <li><a href="#overview">会议概况</a></li>
+      <li><a href="#east-asia">东亚经济体的崛起：日本与亚洲四小龙</a>
+        <ul class="sub">
+          <li><a href="#ea-origin">历史起点与共同特征</a></li>
+          <li><a href="#ea-coldwar">冷战地缘政治的结构性作用</a></li>
+          <li><a href="#ea-japan">日本：领头雁的奇迹与局限</a></li>
+          <li><a href="#ea-korea">韩国：汉江奇迹</a></li>
+          <li><a href="#ea-taiwan">台湾：中小企业奇迹与半导体豪注</a></li>
+          <li><a href="#ea-singapore">新加坡：规划出来的繁荣</a></li>
+          <li><a href="#ea-hk">香港：积极不干预主义</a></li>
+          <li><a href="#ea-compare">比较与反思</a></li>
+        </ul>
+      </li>
+      <li><a href="#tiger-cubs">东南亚虎仔经济体的崛起与挑战</a>
+        <ul class="sub">
+          <li><a href="#tc-overview">虎仔经济体概述</a></li>
+          <li><a href="#tc-indo">印度尼西亚</a></li>
+          <li><a href="#tc-thai">泰国</a></li>
+          <li><a href="#tc-malaysia">马来西亚</a></li>
+          <li><a href="#tc-ph">菲律宾</a></li>
+          <li><a href="#tc-challenge">共同挑战与战略建议</a></li>
+        </ul>
+      </li>
+      <li><a href="#discussion">讨论与评述</a></li>
+    </ol>
+  </div>
+
+  <!-- 会议概况 -->
+  <div class="section" id="overview">
+    <h2>一、会议概况</h2>
+    <span class="section-sub">Meeting Overview</span>
+    <h3>参加人员</h3>
+    <ul>
+      <li><strong>南方科技大学研究院</strong>：谌江瑞（Jerry）— 会议主持/指导</li>
+      <li><strong>实习生</strong>：
+        <ul>
+          <li>Bui Cao Minh（裴高明）— 越南籍实习生，报告人一</li>
+          <li>Justin Ivan Jorianto — 印尼籍实习生，报告人二</li>
+          <li>郭铠旋 — 评论与讨论</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="highlight-box">
+      <strong>会议主题：</strong>二战后亚洲经济体崛起的历史经验与当代挑战——亚洲"四小龙"与"四小虎"经济发展模式比较研究
+    </div>
+  </div>
+
+  <!-- ==================== 东亚 ==================== -->
+  <div class="section" id="east-asia">
+    <h2>二、东亚经济体的崛起：日本与亚洲四小龙</h2>
+    <span class="section-sub">The Rise of East Asian Economies</span>
+
+    <!-- 历史起点 -->
+    <div id="ea-origin">
+      <h3>（一）历史起点与共同特征</h3>
+      <p>1945年后的东亚并非一个被看好的经济发展区域。发展经济学家普遍认为拉丁美洲凭借丰富的自然资源将成为战后发展的领跑者。然而，东亚各经济体在战后废墟上实现了人类经济史上最引人注目的增长奇迹。</p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">~70×</div>
+          <div class="label">日本人均GDP增长</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">~120×</div>
+          <div class="label">香港人均GDP增长</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">~180×</div>
+          <div class="label">新加坡人均GDP增长</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">~200×</div>
+          <div class="label">台湾/韩国人均GDP增长</div>
+        </div>
+      </div>
+
+      <p>韩国与加纳在1960年代的收入水平相近，如今韩国已成为全球最先进的经济体之一。五个经济体共享五大根本性特征：</p>
+      <ol>
+        <li><strong>有效的国家能力</strong> — 能够设计并持续执行长期政策的胜任政府</li>
+        <li><strong>人力资本投资</strong> — 在成为工业强国之前大力投资教育和技术技能</li>
+        <li><strong>出口导向型工业化</strong> — 鼓励企业在国际市场参与竞争</li>
+        <li><strong>冷战地缘政治支持</strong></li>
+        <li><strong>持续的产业升级</strong> — 从纺织向汽车、电子、半导体和先进技术迈进</li>
+      </ol>
+    </div>
+
+    <!-- 冷战 -->
+    <div id="ea-coldwar">
+      <h3>（二）冷战地缘政治的结构性作用</h3>
+      <p>冷战是这些经济体得以快速发展的关键外部条件之一。由于共产主义扩张的威胁，经济增长从美国的视角而言成为国家安全事务而非单纯的经济政策。这一环境提供了四大优势：</p>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>🛡️ 安全保障</h4>
+          <p>美国提供安全保障，使日本等国得以大幅削减国防开支、将更多资源投入工业建设</p>
+        </div>
+        <div class="compare-card">
+          <h4>💰 外国援助</h4>
+          <p>这些经济体获得大量外国援助，尤其是1950年代的韩国和台湾</p>
+        </div>
+        <div class="compare-card">
+          <h4>🏪 市场通道</h4>
+          <p>享有进入美国市场的特殊通道，可自由出口至全球最大的消费市场</p>
+        </div>
+        <div class="compare-card">
+          <h4>🏛️ 体制容忍</h4>
+          <p>西方政府通常容忍威权体制，只要它们保持可靠的反共盟友地位</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <strong>值得注意：</strong>这些地缘政治优势在当今世界已难以复制。
+      </div>
+    </div>
+
+    <!-- 日本 -->
+    <div id="ea-japan">
+      <h3>（三）日本：领头雁的奇迹与局限</h3>
+      <p>日本经济奇迹中最具悖论意味的一点在于，其最重要的改革是在美国占领期间（1945–1952年）推行的。土地改革消灭了不在地主制，将土地所有权转移给农民；占领当局拆解了财阀集团；"道奇路线"将汇率固定在1美元兑360日元，维持了22年之久。</p>
+
+      <div class="highlight-box">
+        <strong>"吉田主义"（Yoshida Doctrine）：</strong>不重建军事力量，将国家资源集中于经济发展，依靠美国提供安全保障。国防开支维持在GDP的约1%。
+      </div>
+
+      <p><strong>通商产业省（MITI）</strong>是日本经济奇迹背后最著名的制度机构。它不取代市场力量，而是引导市场——控制外汇获取、协调技术引进、在产业早期阶段提供保护，同时鼓励企业在国际上竞争。这种"发展型国家"模式影响深远。</p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">9.3%</div>
+          <div class="label">年均增长率<br>(1951–1973)</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">450万+</div>
+          <div class="label">汽车年产量<br>(从不足7万辆)</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">2%→8%</div>
+          <div class="label">全球GDP份额</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">>20%</div>
+          <div class="label">家庭储蓄率</div>
+        </div>
+      </div>
+
+      <p>然而，发展型国家模式最终遭遇瓶颈：1971年尼克松冲击、1973年石油危机、1985年广场协议。极度宽松的货币政策催生了1980年代末的大规模资产泡沫，泡沫破裂后日本进入"失去的 decades"。</p>
+      <div class="highlight-box">
+        <strong>核心教训：</strong>发展型国家在帮助国家追赶全球领先者方面表现出色，但一旦到达技术前沿，同样的制度在维持长期创新方面就变得不再有效。
+      </div>
+    </div>
+
+    <!-- 韩国 -->
+    <div id="ea-korea">
+      <h3>（四）韩国：汉江奇迹</h3>
+      <p>韩国的成功始于一系列当时看似灾难的事件。1949–1950年间的土地改革打破了大地主阶层，使韩国成为发展中世界最为平等的农村社会之一。识字率从1945年的约22%迅速上升至1960年的70%以上，到1990年超过96%。</p>
+
+      <p>转折点出现在1961年，朴正熙通过军事政变上台。他设立了经济企划院协调国家发展，将银行部门国有化，使信贷按照国家优先目标配置。三星、现代、LG、大宇等财阀获得补贴贷款，但必须实现雄心勃勃的出口目标。</p>
+
+      <div class="highlight-box">
+        <strong>重化学工业驱动（HCI Drive，1970年代初）：</strong>被许多经济学家认为是20世纪最大胆的产业政策之一。韩国聚焦钢铁、造船、石化、机械、电子和有色金属六大战略产业。世界银行和IMF均提出批评，但长期结果令人瞩目——浦项制铁成为世界级钢铁生产商，现代成为全球造船业领导者，三星成为全球最大电子公司之一。
+      </div>
+
+      <p>1987年民主化后，工人获得更强议价能力，工资大幅上升，反而促使企业向更高附加值产业迈进。1997年亚洲金融危机迫使韩国接受创纪录的580亿美元IMF救助方案，但也推动了银行、公司治理和金融监管领域的重大改革。</p>
+    </div>
+
+    <!-- 台湾 -->
+    <div id="ea-taiwan">
+      <h3>（五）台湾：中小企业奇迹与半导体豪注</h3>
+      <p>台湾的土地改革被公认为现代史上最成功的案例之一，分三步推进：农租法定上限降至37.5%；将前日本殖民者土地逐步出售给佃农；通过"耕者有其田"计划，将前地主转化为新兴工业部门的投资者。</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>🇰🇷 韩国模式</h4>
+          <p>依赖巨型财阀，收入分配差距较大，1997年危机中受冲击严重</p>
+        </div>
+        <div class="compare-card">
+          <h4>🇹🇼 台湾模式</h4>
+          <p>由中小企业主导，收入分配更为平等，1997年危机中几乎未受影响，但缺乏国际知名消费品牌</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>"硅盾"（Silicon Shield）：</strong>1980年代政府设立新竹科学园区，诞生了台积电（TSMC）。台积电不竞争芯片设计，而是专注于代工制造半导体，这种纯晶圆代工模式彻底改变了全球半导体产业。如今台湾生产了全球绝大部分最先进的半导体芯片——既是核心安全资产，也是全球供应链中最大的单一风险点。
+      </div>
+    </div>
+
+    <!-- 新加坡 -->
+    <div id="ea-singapore">
+      <h3>（六）新加坡：规划出来的繁荣</h3>
+      <p>新加坡以完全不同的策略应对挑战——不保护国内产业，而是积极欢迎外国跨国公司。经济发展局（EDB）负责吸引国际投资并识别具有长期增长潜力的产业。同时发展世界一流基础设施，维持高效公务员体系，执行严格反腐政策。</p>
+
+      <div class="highlight-box">
+        <strong>中央公积金制度（CPF）：</strong>工人和雇主将工资一定比例缴入个人储蓄账户，同时服务于退休、医疗和住房融资，并为政府提供大量国内长期投资资本。通过建屋发展局（HDB），约80%的居民人口居住在组屋中，约90%的家庭拥有自己的住房。
+      </div>
+      <p>新加坡的发展模式表明，经济政策不仅仅是提高GDP，更是加强长期社会凝聚力。</p>
+    </div>
+
+    <!-- 香港 -->
+    <div id="ea-hk">
+      <h3>（七）香港：积极不干预主义</h3>
+      <p>与其他四个经济体不同，香港奉行"积极不干预主义"（positive non-interventionism），与财政司司长郭伯伟爵士密切相关。政府不指导产业发展，专注于维持低税率、保护产权、确保法治。</p>
+
+      <p>然而，"自由市场"叙事需要审慎审视：</p>
+      <ul>
+        <li>政府拥有全部土地，土地溢价资助了大部分公共支出——这是一种事实上的土地税</li>
+        <li>1953年石硖尾大火后启动公共住房计划，到1980年代已容纳约一半人口</li>
+        <li>补贴住房压低了工资底线，使低成本制造业成为可能</li>
+        <li>未经选举的英国殖民政府，没有民主再分配压力</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>核心启示：</strong>安全的产权、法治、开放贸易和低交易成本可以替代产业政策——而非国家可以被完全摒弃。
+      </div>
+    </div>
+
+    <!-- 比较与反思 -->
+    <div id="ea-compare">
+      <h3>（八）比较与反思</h3>
+      <p>经济成功没有单一蓝图。尽管制度形式差异巨大——从统制主义到自由放任，从财阀到中小企业——但底层功能始终一致：宏观经济稳定、高储蓄、大众教育、世界市场纪律和可信的长期视野国家。</p>
+
+      <div class="takeaway">
+        <h4>东亚与拉美/撒哈拉以南非洲的关键差异</h4>
+        <ul>
+          <li>早期实施激进的土地改革，减少不平等并消除地主阶级的政治否决权</li>
+          <li>进口替代仅被短暂使用，到1960年代中期即被出口纪律取代</li>
+          <li>补贴是互惠性的——以可衡量的出口绩效为条件</li>
+          <li>25%至40%的国内储蓄率为投资提供资金，无需大量借外债</li>
+          <li>官僚机构基于才能选拔，不受短期政治俘获的影响</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 虎仔经济体 ==================== -->
+  <div class="section" id="tiger-cubs">
+    <h2>三、东南亚虎仔经济体的崛起与挑战</h2>
+    <span class="section-sub">The Rise and Challenges of Tiger Cub Economies</span>
+
+    <!-- 概述 -->
+    <div id="tc-overview">
+      <h3>（一）虎仔经济体概述</h3>
+      <p>"虎仔经济体"指印度尼西亚、马来西亚、菲律宾和泰国四个新兴经济体。四国合计占东盟GDP的80%以上。据亚洲开发银行预测，东南亚整体有望在2050年成为世界第四大经济体，2026年东盟GDP预计增长4.7%。</p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">>80%</div>
+          <div class="label">占东盟GDP比重</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">4.7%</div>
+          <div class="label">2026年东盟GDP<br>预计增长率</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">第4大</div>
+          <div class="label">2050年东南亚<br>预计全球排名</div>
+        </div>
+      </div>
+
+      <p>四国共享三大特征：出口导向战略聚焦制造业升级；强烈的外商投资依赖；GDP增长持续超过全球平均水平。</p>
+    </div>
+
+    <!-- 印尼 -->
+    <div id="tc-indo">
+      <div class="country-card">
+        <h3><span class="flag">🇮🇩</span> （二）印度尼西亚：东南亚最大经济体</h3>
+        <p><strong>2026年GDP预计增长5.3%</strong>，由国内消费、中产阶级和大宗商品驱动。</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>大宗商品与农业</h4>
+            <p>全球最大棕榈油生产国和出口国，2025年出口额2901.2亿美元（+26.67%）；重要动力煤出口国，2024年出口额261亿美元</p>
+          </div>
+          <div class="compare-card">
+            <h4>制造业</h4>
+            <p>涵盖纺织、食品饮料、汽车组装和电子制造，贡献GDP的40%–42%，是正式就业最大来源</p>
+          </div>
+        </div>
+        <p><strong>三个阶段：</strong>①1960–1980年代进口替代工业化（ISI）→ ②1980年代中期石油价格崩溃后转向出口导向型工业化 → ③当前面临基础设施差距、官僚繁文缛节和环境可持续性问题。</p>
+      </div>
+    </div>
+
+    <!-- 泰国 -->
+    <div id="tc-thai">
+      <div class="country-card">
+        <h3><span class="flag">🇹🇭</span> （三）泰国：旅游与汽车制造的韧性</h3>
+        <p><strong>2025年GDP预计增长2.2%</strong>，由旅游业复苏和高价值制造业驱动。</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>🏖️ 旅游业</h4>
+            <p>预计2025年接待3290万游客，推动国内消费、创造就业</p>
+          </div>
+          <div class="compare-card">
+            <h4>🚗 汽车制造</h4>
+            <p>"东方底特律"，加速电动汽车生产，引领东盟汽车出口</p>
+          </div>
+        </div>
+        <p><strong>三大风险：</strong>政治不稳定（频繁政府更迭）；人口快速老龄化；过度依赖旅游业。</p>
+      </div>
+    </div>
+
+    <!-- 马来西亚 -->
+    <div id="tc-malaysia">
+      <div class="country-card">
+        <h3><span class="flag">🇲🇾</span> （四）马来西亚：全球半导体领导者</h3>
+        <p><strong>2026年GDP增长目标5.0%</strong>，由国内需求和E&E部门出口驱动。</p>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="num">~13%</div>
+            <div class="label">全球半导体ATP<br>产能占比</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">4000亿</div>
+            <div class="label">林吉特（~850亿美元）<br>半导体收入(2025)</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">22.5%</div>
+            <div class="label">E&E部门<br>2025年预计增长</div>
+          </div>
+        </div>
+        <p><strong>两个阶段：</strong>①1971–1990年新经济政策（NEP），消除贫困和族群经济差距 → ②1990年代起转向高科技制造。<strong>挑战：</strong>高技能工程师短缺；族群和宗教分歧；财政赤字约束。</p>
+      </div>
+    </div>
+
+    <!-- 菲律宾 -->
+    <div id="tc-ph">
+      <div class="country-card">
+        <h3><span class="flag">🇵🇭</span> （五）菲律宾：BPO产业的全球主导地位</h3>
+        <p><strong>2026年GDP增长目标4.0%</strong>，由国内需求和BPO部门驱动。</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>💻 IT-BPM领先</h4>
+            <p>2025年超越海外汇款成为第一大外汇来源，凭借英语熟练劳动力主导全球外包</p>
+          </div>
+          <div class="compare-card">
+            <h4>💸 海外汇款</h4>
+            <p>稳定生命线，推动家庭消费和国内支出，为经济冲击提供缓冲</p>
+          </div>
+        </div>
+        <p><strong>关键挑战：</strong>通胀率高企（2026年预计6.8%，东盟最高）；基础设施薄弱；持续的腐败问题。</p>
+      </div>
+    </div>
+
+    <!-- 共同挑战 -->
+    <div id="tc-challenge">
+      <h3>（六）共同挑战与战略建议</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>📈 通胀压力</h4>
+          <p>菲律宾6.8%领跑，区域平均3.5%，侵蚀购买力</p>
+        </div>
+        <div class="compare-card">
+          <h4>⚖️ 收入不平等</h4>
+          <p>城乡、技术/非技术工人差距扩大，阻碍社会流动</p>
+        </div>
+        <div class="compare-card">
+          <h4>🏛️ 持续腐败</h4>
+          <p>破坏营商环境，阻碍外国投资，削弱公众信任</p>
+        </div>
+        <div class="compare-card">
+          <h4>🌐 全球依赖</h4>
+          <p>高度依赖外部需求和FDI，容易受全球经济波动影响</p>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <h4>三大战略建议</h4>
+        <ul>
+          <li><strong>经济多元化：</strong>深化教育改革（尤其STEM）、加速跨境基础设施互联互通、推动金融物流数字等高价值产业</li>
+          <li><strong>人力资本投资：</strong>建设职业培训网络、投资AI/大数据/云计算数字基础设施、实施有吸引力的人才政策</li>
+          <li><strong>深化区域整合：</strong>消除非标壁垒、加强产业政策协调、发展农产品深加工以提高附加值</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 讨论 ==================== -->
+  <div class="section" id="discussion">
+    <h2>四、讨论与评述</h2>
+    <span class="section-sub">Discussion and Commentary</span>
+
+    <h3>（一）全球化与逆全球化的深刻影响</h3>
+    <div class="discussion-quote">
+      <div class="speaker">🗣️ 郭铠旋（普华永道全球贸易服务）</div>
+      <p>近年来逆全球化趋势日趋严重。美国颁布了一系列出口管理条例和制裁名单，推动制造业回流，逐步减少向亚洲合作伙伴的技术共享。这些国家面临选择：是继续投资优势产业、在东盟内部复用"雁行模式"进行产业承接，还是接受逆全球化现实、以不平等条件换取发达国家的技术准入。</p>
+    </div>
+    <div class="discussion-quote">
+      <div class="speaker">🗣️ 谌江瑞（Jerry）</div>
+      <p>当前全球经济面临韧性问题。过度依赖某一国家或地区在遭遇重大冲击时风险极大。从国际产能博弈角度，中国目前的思路是不仅考虑自身利益，还要考虑ESG维度以及如何让全球实现持续稳定发展。需要在分工协作与风险可控之间寻求平衡。</p>
+    </div>
+
+    <h3>（二）营商环境的核心地位</h3>
+    <div class="discussion-quote">
+      <div class="speaker">🗣️ 谌江瑞（Jerry）</div>
+      <p>营商环境对于国家发展至关重要，前提包括政治稳定、人才储备和基础设施建设（"要致富，先修路"）。以特斯拉、苹果来华建厂为例，中国提供土地、资源和保护，这些是相互的——外资获得市场机会，中国获得技术和就业。关键在于稳定的政策预期。无论哪个国家，良好的营商环境都是发展的永恒课题。</p>
+    </div>
+
+    <h3>（三）历史经验与未来展望</h3>
+    <div class="takeaway">
+      <h4>东亚经验的核心启示</h4>
+      <ul>
+        <li><strong>没有单一的成功模式</strong></li>
+        <li><strong>发展顺序比意识形态更重要</strong> — 先实现平等和教育，再发展轻工业，然后推进重工业和技术产业</li>
+        <li><strong>纪律是关键</strong> — 支持是有条件的、可撤回的</li>
+        <li><strong>地缘政治是真实的投入要素</strong>，且当今已不可复制</li>
+        <li><strong>发展模式有保质期</strong> — 最适合追赶阶段，到达技术前沿后面临转型挑战</li>
+        <li><strong>发展的代价是真实的</strong> — 威权统治、劳工压制和环境破坏都是必须正视的成本</li>
+      </ul>
+    </div>
+    <div class="highlight-box">
+      <strong>后续研究方向：</strong>转向美西方视角，并在最终阶段纳入中国"一带一路"倡议及其与各国的发展关系。
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>研究院实习项目 · 亚洲经济发展研究 · 2026.07.23</p>
+  <p style="margin-top:8px;"><a href="../../index.html">← 返回主页</a></p>
+</div>
+
+</body>
+</html>

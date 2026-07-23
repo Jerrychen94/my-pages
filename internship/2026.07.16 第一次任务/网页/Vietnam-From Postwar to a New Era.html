@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vietnam: From Post-WWII to the New Era (1945–2026)</title>
+<style>
+  :root {
+    --primary: #C41A1A;
+    --primary-dark: #8B1515;
+    --accent: #FFD700;
+    --bg: #FFFBF5;
+    --card-bg: #FFFFFF;
+    --text: #2D2D2D;
+    --text-light: #6B6B6B;
+    --border: #F0D9D9;
+    --highlight: #FFF5F5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.4em; font-weight: 700; margin-bottom: 12px; letter-spacing: 2px; }
+  .hero .subtitle { font-size: 1.1em; opacity: 0.9; margin-bottom: 8px; }
+  .hero .tagline { font-size: 0.95em; opacity: 0.8; max-width: 640px; margin: 0 auto 10px; }
+  .hero .meta { font-size: 0.9em; opacity: 0.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+  .toc {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--primary);
+  }
+  .toc h2 { font-size: 1.2em; color: var(--primary); margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 1.5em;
+    color: var(--primary);
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section .period {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .section h3 {
+    font-size: 1.1em;
+    color: var(--primary-dark);
+    margin: 20px 0 8px;
+  }
+  .section p { margin-bottom: 12px; }
+  .section ul { padding-left: 20px; margin-bottom: 12px; }
+  .section li { margin-bottom: 6px; }
+
+  .highlight-box {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .highlight-box strong { color: var(--primary-dark); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .col-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .col-card h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 120px;
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .stat-item .label {
+    font-size: 0.8em;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 16px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+    padding-left: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+  .timeline-item .year {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.9em;
+  }
+
+  .leader-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .leader-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border-top: 3px solid var(--primary);
+  }
+  .leader-card .name {
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 0.95em;
+  }
+  .leader-card .years {
+    font-size: 0.8em;
+    color: var(--text-light);
+  }
+  .leader-card .desc {
+    font-size: 0.85em;
+    margin-top: 6px;
+  }
+
+  .anchor-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .anchor-item {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--accent);
+  }
+  .anchor-item .num {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-right: 8px;
+  }
+  .anchor-item .title {
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+  .anchor-item .desc {
+    font-size: 0.9em;
+    margin-top: 6px;
+  }
+
+  .discussion {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFE8E8 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+  }
+  .discussion h2 { color: var(--primary); margin-bottom: 14px; }
+  .discussion .qa { margin-bottom: 14px; }
+  .discussion .q { font-weight: 600; color: var(--primary-dark); margin-bottom: 4px; }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-light);
+    font-size: 0.85em;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .two-col, .anchor-list { grid-template-columns: 1fr; }
+    .leader-grid { grid-template-columns: 1fr 1fr; }
+    .section { padding: 20px; }
+    .stat-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>VIETNAM</h1>
+  <div class="subtitle">From Post-WWII to the New Era (1945–2026)</div>
+  <div class="tagline">Eight decades of war, crisis, reform, and integration — how a fragmented agrarian society became a global manufacturing hub while its one-party political system endured.</div>
+  <div class="meta">Bui Cao Minh · July 16, 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s1">Independence, Partition & the Wars of Liberation (1945–1975)</a></li>
+      <li><a href="#s2">Reunification & the Command-Economy Crisis (1975–1986)</a></li>
+      <li><a href="#s3">Doi Moi & Global Integration (1986–2007)</a></li>
+      <li><a href="#s4">Industrialization & Global Supply Chains (2007–2026)</a></li>
+      <li><a href="#s5">Leadership & Institutional Adaptation</a></li>
+      <li><a href="#s6">The Anti-Corruption Campaign & Its Impact</a></li>
+      <li><a href="#s7">The New Era: Doi Moi 2.0</a></li>
+      <li><a href="#s8">The Five Unchanging Anchors</a></li>
+      <li><a href="#s9">Future Challenges</a></li>
+      <li><a href="#s10">Discussion & Q&A</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <h2>I. Independence, Partition & the Wars of Liberation</h2>
+    <span class="period">1945–1975</span>
+
+    <h3>The First Indochina War (1945–1954)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="year">August 1945</span>
+        <p>Japan surrenders. The Viet Minh — a nationalist-communist coalition — seizes the power vacuum, launching the August Revolution.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">September 2, 1945</span>
+        <p>Chairman Ho Chi Minh proclaims the Democratic Republic of Vietnam. France attempts to reclaim its Indochinese colony, triggering the First Indochina War.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1946–1953</span>
+        <p>The conflict internationalizes within the Cold War framework: the USSR and PRC arm Hanoi; the U.S. bankrolls the French war effort.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1954</span>
+        <p>The Battle of Dien Bien Phu — General Vo Nguyen Giap dismantles the French "Navarre Plan." A watershed in global decolonization: the first time a colonial force defeated a European power in a conventional battle.</p>
+      </div>
+    </div>
+
+    <h3>The Vietnam War (1954–1975)</h3>
+    <p>The 1954 Geneva Accords temporarily split the country at the 17th parallel, with reunification elections set for 1956. Because the U.S. was unwilling to allow a communist takeover, the elections never took place. The temporary partition evolved into the Vietnam War.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Official Vietnamese Narrative</h4>
+        <p>A heroic, necessary struggle for liberation and reunification against foreign intervention. The 1956 elections, blocked by the U.S. and the South, never came.</p>
+      </div>
+      <div class="col-card">
+        <h4>International Scholarship</h4>
+        <p>A devastating Cold War proxy conflict driven by the American "Domino Theory" — foregrounding geopolitics over the liberation framing.</p>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">58,000+</div>
+        <div class="label">U.S. military personnel killed</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">Millions</div>
+        <div class="label">Vietnamese combatants & civilians dead</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">Apr 30, 1975</div>
+        <div class="label">Fall of Saigon; reunification</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2>II. Reunification & the Command-Economy Crisis</h2>
+    <span class="period">1975–1986</span>
+    <p>After reunification, the government attempted to restructure the entire country along the Northern model: private enterprises were nationalized, agriculture was collectivized, and former South Vietnamese officials were sent to re-education camps.</p>
+
+    <h3>Social Upheaval</h3>
+    <ul>
+      <li>Many former South Vietnamese personnel attempted to flee by boat to Thailand, the Philippines, and other U.S.-allied nations, creating the "boat people" refugee crisis</li>
+      <li>The exodus drained the country of its most experienced managers and professionals</li>
+    </ul>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">700%+</div>
+        <div class="label">Annual inflation by mid-1980s</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">1.5M tons</div>
+        <div class="label">Grain imported yearly by a fertile rice nation</div>
+      </div>
+    </div>
+
+    <p>State pricing, quota production, and the abolition of private property killed the incentive to produce. Without massive Soviet-bloc subsidies, the model was economically unsustainable.</p>
+
+    <h3>Multi-Front Pressure</h3>
+    <ul>
+      <li>1978: Khmer Rouge repeatedly attacked Vietnamese border communities; Vietnam intervened in Cambodia, toppling the Pol Pot regime and halting one of the 20th century's worst genocides (1.2–2.8 million deaths)</li>
+      <li>February 1979: China launched a brief but destructive Sino-Vietnamese border war</li>
+      <li>Vietnam was internationally isolated — subjected to embargoes by the U.S., China, and ASEAN; cut off from the World Bank and other international financial institutions; almost entirely dependent on the Soviet Union</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>Turning-point realization:</strong> Extreme hardship convinced the CPV leadership that long-term survival, prosperity, and sovereignty demanded economic self-reliance and sweeping reform.
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2>III. Doi Moi & Global Integration</h2>
+    <span class="period">1986–2007</span>
+    <p>At the 6th National Party Congress in December 1986, General Secretary Nguyen Van Linh launched Doi Moi (Renewal). The goal was not to abandon socialism but to build a socialist-oriented market economy.</p>
+
+    <h3>The Agricultural Breakthrough</h3>
+    <p>Politburo Resolution 10 (1988) essentially reversed agricultural collectivization: farming households received long-term land-use rights and were allowed to sell surplus produce on the open market. Farmers now had incentives to produce, and agricultural output surged.</p>
+
+    <div class="highlight-box">
+      <strong>Result:</strong> By 1989, Vietnam flipped from a net food importer to the world's third-largest rice exporter.
+    </div>
+
+    <h3>The Vietnamese Model: Why Vietnam Didn't Follow the Others</h3>
+    <div class="two-col">
+      <div class="col-card">
+        <h4>vs. Soviet Union</h4>
+        <p>The USSR reformed and then collapsed as a state. Vietnam reformed the economy while keeping political stability intact.</p>
+      </div>
+      <div class="col-card">
+        <h4>vs. Eastern Europe</h4>
+        <p>Eastern Europe pursued rapid privatization — "shock therapy." Vietnam reformed gradually, preserving the state's strategic role.</p>
+      </div>
+    </div>
+    <p>Even compared with China, Vietnam moved earlier to multilateral diplomacy and diversified FDI sources rather than relying on a single partner. Vietnam prioritized stability and long-term predictability, which proved highly attractive to investors.</p>
+
+    <h3>Diplomatic Opening</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="year">1989</span>
+        <p>Withdrew forces from Cambodia</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1991</span>
+        <p>Normalized relations with China</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1995</span>
+        <p>U.S. lifted its trade embargo</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1995</span>
+        <p>Joined ASEAN</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2007</span>
+        <p>Joined the World Trade Organization</p>
+      </div>
+    </div>
+    <p>In less than two decades, Vietnam transformed from a diplomatically isolated nation into an active participant in the global economy.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2>IV. Industrialization & Global Supply Chains</h2>
+    <span class="period">2007–2026</span>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">~65x</div>
+        <div class="label">Economic scale growth since 1986</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">$5,115</div>
+        <div class="label">GDP per capita</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">&lt;4%</div>
+        <div class="label">Poverty rate (from >60%)</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">75 yrs</div>
+        <div class="label">Life expectancy</div>
+      </div>
+    </div>
+
+    <h3>The Export Engine</h3>
+    <p>Exports were near zero in 1990; by 2025 they reached $475 billion. Over 70% of export value comes from FDI firms such as Samsung and other Korean, Chinese, European, and American companies.</p>
+
+    <h3>Premier Beneficiary of "China Plus One"</h3>
+    <p>As Chinese costs rose and geopolitical tensions increased, many multinationals began seeking a second manufacturing base to reduce dependence on China. Vietnam became the top choice, thanks to its young workforce, competitive labor costs, and proximity to Chinese supply chains.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>East Asian Supply Side</h4>
+        <p>China, South Korea, and Taiwan supply machinery and components. Vietnam runs a massive trade deficit with China (~$186B in imports) to feed its export factories.</p>
+      </div>
+      <div class="col-card">
+        <h4>Western Consumer Markets</h4>
+        <p>Finished goods are exported to the U.S. and EU. The United States is Vietnam's largest export market, with over $153B in trade, generating the largest trade surplus.</p>
+      </div>
+    </div>
+
+    <h3>Key Trade Partners (2025)</h3>
+    <ul>
+      <li><strong>United States:</strong> Largest export destination; absorbs electronics and apparel; generates the trade surplus</li>
+      <li><strong>China:</strong> Largest import source; supplies machinery, industrial materials, and goods</li>
+      <li><strong>European Union:</strong> High-value market; EVFTA reduces tariffs on textiles and footwear</li>
+      <li><strong>South Korea & Japan:</strong> Key sources of FDI, advanced technology, industrial components, and infrastructure funding</li>
+    </ul>
+    <p>Vietnam's export model rests on two pillars: East Asian industrial inputs and Western consumer demand.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2>V. Leadership & Institutional Adaptation</h2>
+    <span class="period">One Party, Six Eras</span>
+
+    <div class="leader-grid">
+      <div class="leader-card">
+        <div class="name">Ho Chi Minh</div>
+        <div class="years">1945–1969</div>
+        <div class="desc">Provided revolutionary legitimacy for the new nation, fusing anti-colonial nationalism with socialism.</div>
+      </div>
+      <div class="leader-card">
+        <div class="name">Le Duan</div>
+        <div class="years">1969–1986</div>
+        <div class="desc">Led the country through wartime. Vital in war, but unsustainable in peace.</div>
+      </div>
+      <div class="leader-card">
+        <div class="name">Nguyen Van Linh</div>
+        <div class="years">1986–1991</div>
+        <div class="desc">The architect of economic reform; launched Doi Moi and market mechanisms.</div>
+      </div>
+      <div class="leader-card">
+        <div class="name">Technocratic Era</div>
+        <div class="years">1990s–2010s</div>
+        <div class="desc">Kiet, Khai, Dung — accelerated industrialization and global integration.</div>
+      </div>
+      <div class="leader-card">
+        <div class="name">Nguyen Phu Trong</div>
+        <div class="years">2011–2024</div>
+        <div class="desc">Restored Party legitimacy via the "Blazing Furnace" anti-corruption campaign.</div>
+      </div>
+      <div class="leader-card">
+        <div class="name">To Lam</div>
+        <div class="years">2024–present</div>
+        <div class="desc">Centralizes authority for economic acceleration — Doi Moi 2.0.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2>VI. The Anti-Corruption Campaign & Its Impact</h2>
+    <span class="period">The "Blazing Furnace" (2011–2024)</span>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>What It Achieved</h4>
+        <p>Nearly 200,000 party members were disciplined; massive graft was uncovered. An institutional correction that curbed rent-seeking, enforced ethical governance, and improved international perceptions of Vietnam's corporate governance.</p>
+      </div>
+      <div class="col-card">
+        <h4>Unintended Costs</h4>
+        <ul>
+          <li>Fear of prosecution froze the bureaucracy</li>
+          <li>Officials delayed approving public infrastructure and procurement</li>
+          <li>Hospital medical-supply shortages (2022)</li>
+          <li>A wave of civil-servant resignations</li>
+          <li>Administrative bottlenecks and stalled projects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2>VII. The New Era: Doi Moi 2.0</h2>
+    <span class="period">2024–Present</span>
+    <p>After General Secretary Nguyen Phu Trong's death in July 2024, President To Lam — a career security officer — consolidated power. At the 14th Party Congress (January 19–23, 2026), he was re-elected General Secretary, and the priority pivoted firmly back to economic acceleration.</p>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">10%+</div>
+        <div class="label">Target annual GDP growth</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">~$8,500</div>
+        <div class="label">GDP per capita goal by 2030</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">2045</div>
+        <div class="label">High-income status ambition</div>
+      </div>
+    </div>
+
+    <p>Together with new Prime Minister Le Minh Hung (elected April 2026), the mandate is to streamline the state, reduce bureaucratic barriers, and accelerate economic growth. Many call this the second Doi Moi.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="s8">
+    <h2>VIII. The Five Unchanging Anchors</h2>
+    <span class="period">Principles that never changed throughout the transformation</span>
+
+    <div class="anchor-list">
+      <div class="anchor-item">
+        <span class="num">1</span>
+        <span class="title">One-Party Leadership</span>
+        <div class="desc">The CPV's exclusive authority gave the predictability foreign investors prize — decades-long planning without electoral whiplash.</div>
+      </div>
+      <div class="anchor-item">
+        <span class="num">2</span>
+        <span class="title">Fierce Sovereignty</span>
+        <div class="desc">Codified in the "Four Nos": no alliances, no taking sides, no foreign bases, no use or threat of force.</div>
+      </div>
+      <div class="anchor-item">
+        <span class="num">3</span>
+        <span class="title">Gradual Reform</span>
+        <div class="desc">Systematic, step-by-step change — never Eastern Europe-style "shock therapy" — protecting social stability.</div>
+      </div>
+      <div class="anchor-item">
+        <span class="num">4</span>
+        <span class="title">Long-Term Planning</span>
+        <div class="desc">Consistent five- and ten-year socio-economic plans align health, education, and infrastructure with national goals.</div>
+      </div>
+      <div class="anchor-item" style="grid-column: 1 / -1;">
+        <span class="num">5</span>
+        <span class="title">Strong Developmental State</span>
+        <div class="desc">Even as private enterprise flourished, the state kept control of energy, telecoms, and defense. These five foundations remain remarkably stable, even as Vietnam has transformed nearly every aspect of its economy.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="s9">
+    <h2>IX. Future Challenges</h2>
+    <span class="period">Demographics & the Middle-Income Trap</span>
+
+    <h3>The Demographic Clock</h3>
+    <p>Currently, about 67% of Vietnam's ~102 million citizens are working age — the "Golden Population" that attracted global manufacturing. But the window closes between 2036 and 2042, and Vietnam is projected to become a "super-aged" society by 2056. The risk is that Vietnam may get old before getting rich. Supporting an aging population will place growing pressure on healthcare, pensions, and public finances.</p>
+
+    <h3>Escaping the Middle-Income Trap</h3>
+    <p>Over 90% of manufacturing jobs remain in relatively low-skilled assembly work. Escaping requires structural change: upgrading workforce skills through higher education, fostering domestic technological innovation, modernizing legal institutions, and moving to higher-value, knowledge-based industries.</p>
+
+    <h3>"Bamboo Diplomacy"</h3>
+    <p>Vietnam's approach is called bamboo diplomacy: solid roots, a strong trunk, and flexible branches. The roots are the Four Nos principles, but in 2019 Vietnam added a "depends clause," allowing it to consider appropriate defense relations when circumstances require — signaling to Beijing that aggression in the South China Sea could push Hanoi toward Washington.</p>
+
+    <div class="highlight-box">
+      <strong>Underlying tension:</strong> Achieving ambitious economic goals requires massive investment. Recent Chinese-financed cross-border high-speed rail and the adoption of Huawei and ZTE equipment in 5G networks illustrate growing economic interdependence. Pursuing growth while safeguarding autonomy is the core challenge Vietnam faces.
+    </div>
+  </div>
+
+  <!-- Discussion -->
+  <div class="discussion" id="s10">
+    <h2>Discussion & Q&A</h2>
+
+    <div class="qa">
+      <div class="q">Q: Who do you consider the most important leader in Vietnamese history?</div>
+      <p>Minh considers Ho Chi Minh the most important historical figure because he led the country out of colonial rule. In terms of the economic system, Nguyen Van Linh is the most important because he proposed the shift from a centrally planned economy to a socialist-oriented market economy, which prevented Vietnam from becoming a second Soviet Union and made it one of the fastest-growing countries in Southeast Asia.</p>
+    </div>
+
+    <div class="qa">
+      <div class="q">Q: What are the core advantages and potential risks of Vietnam's rapid economic growth since joining the WTO in 2007?</div>
+      <p>The core advantage lies in stability. Vietnam's political environment has not changed dramatically — there is only one party, and when implementing new policies, there is time to experiment, observe whether they work, and then make appropriate adjustments, unlike the U.S. where each president may have different ideas and overturn predecessor policies. Additionally, Vietnam is located at a strategic position along trade routes between Europe and Asia, near the South China Sea where much maritime trade passes, combined with a very cheap and competitive workforce.</p>
+    </div>
+
+    <div class="qa">
+      <div class="q">Q: What is your understanding of capitalism?</div>
+      <p>Minh believes capitalism is very important for the modern world economic system. In the past, people thought the centrally planned economy was the best model, with fixed quotas and jobs — it wasn't about supply and demand. But supply and demand are a very important part of capitalism and modern society. Based on this, the original system can be reformed to align closely with capitalism, but not pure capitalism, because countries like China and Vietnam with the same ideology cannot adopt capitalism as purely as Western countries. Dr. Yan Ruoshui added that this is not an ideological opposition but rather a way and mechanism for allocating and utilizing resources.</p>
+    </div>
+
+    <div class="qa">
+      <div class="q">Q: Can the AI era help solve the problems of disappearing demographic dividends and the middle-income trap?</div>
+      <p>Regarding demographic dividends, Vietnam's current situation is almost the same as China's 10–20 years ago — the advantage is a young, competitive, and cheap workforce. Minh believes AI cannot replace human resources because in essential parts of the production chain and mass production, using human labor is more efficient. Machines and humans can be combined, but AI cannot fully replace workers. Regarding the middle-income trap, he believes it is very difficult to solve because cheap labor is both an advantage and a disadvantage — it attracts foreign investment but means workers are underpaid. If Vietnam lacks key technologies or insufficient R&D investment, it will not be able to escape the middle-income trap. He also noted that Vietnam is to some extent a real estate economy — a smaller version of Evergrande — where most assets and funds in the system are closely tied to real estate, making it very difficult to escape the middle-income trap.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Research Intern First Presentation · July 16, 2026
+</footer>
+
+</body>
+</html>

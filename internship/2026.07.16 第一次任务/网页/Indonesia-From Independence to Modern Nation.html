@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesia: From Independence to a Modern Nation (1945–Present)</title>
+<style>
+  :root {
+    --primary: #B85042;
+    --primary-dark: #8B3A30;
+    --accent: #E8A87C;
+    --bg: #FDF6F0;
+    --card-bg: #FFFFFF;
+    --text: #2D2D2D;
+    --text-light: #6B6B6B;
+    --border: #E8D5C4;
+    --highlight: #FFF3E0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.4em; font-weight: 700; margin-bottom: 12px; letter-spacing: 2px; }
+  .hero .subtitle { font-size: 1.1em; opacity: 0.9; margin-bottom: 8px; }
+  .hero .meta { font-size: 0.9em; opacity: 0.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+  .toc {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--primary);
+  }
+  .toc h2 { font-size: 1.2em; color: var(--primary); margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 1.5em;
+    color: var(--primary);
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section .period {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .section h3 {
+    font-size: 1.1em;
+    color: var(--primary-dark);
+    margin: 20px 0 8px;
+  }
+  .section p { margin-bottom: 12px; }
+  .section ul { padding-left: 20px; margin-bottom: 12px; }
+  .section li { margin-bottom: 6px; }
+
+  .highlight-box {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .highlight-box strong { color: var(--primary-dark); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .col-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .col-card h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 120px;
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .stat-item .label {
+    font-size: 0.8em;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 16px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+    padding-left: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+  .timeline-item .year {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.9em;
+  }
+
+  .president-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .president-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+  }
+  .president-card .name {
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 1em;
+  }
+  .president-card .years {
+    font-size: 0.8em;
+    color: var(--text-light);
+  }
+  .president-card .desc {
+    font-size: 0.9em;
+    margin-top: 6px;
+  }
+
+  .discussion {
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFF3E0 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+  }
+  .discussion h2 { color: var(--primary); margin-bottom: 14px; }
+  .discussion .qa { margin-bottom: 14px; }
+  .discussion .q { font-weight: 600; color: var(--primary-dark); margin-bottom: 4px; }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-light);
+    font-size: 0.85em;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .two-col, .president-grid { grid-template-columns: 1fr; }
+    .section { padding: 20px; }
+    .stat-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>INDONESIA</h1>
+  <div class="subtitle">From Independence to a Modern Nation (1945–Present)</div>
+  <div class="meta">Justin Ivan Jorianto · July 16, 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s1">Independence & National Revolution (1945–1949)</a></li>
+      <li><a href="#s2">Liberal Democracy Era (1950–1959)</a></li>
+      <li><a href="#s3">Guided Democracy Era (1959–1965)</a></li>
+      <li><a href="#s4">The 30 September Movement & Regime Change (1965)</a></li>
+      <li><a href="#s5">The New Order (1966–1998)</a></li>
+      <li><a href="#s6">Asian Financial Crisis & the Fall of Suharto (1997–1998)</a></li>
+      <li><a href="#s7">Reformasi Era (1998–Present)</a></li>
+      <li><a href="#s8">Discussion & Q&A</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <h2>I. Independence & National Revolution</h2>
+    <span class="period">1945–1949</span>
+    <p>On August 17, 1945, following Japan's surrender, Indonesia proclaimed its independence. Sukarno became the first president and Mohammad Hatta the vice president. The Dutch, who had colonized Indonesia for three centuries, attempted to re-establish colonial rule after the Japanese occupation ended, leading to four years of armed conflict and diplomacy.</p>
+
+    <h3>Diplomatic Struggle</h3>
+    <ul>
+      <li>Indonesia pursued international diplomacy to gain recognition from other nations</li>
+      <li>United Nations mediation</li>
+      <li>International pressure, especially from the United States, pushed the Netherlands to negotiate</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>Outcome:</strong> In December 1949, the Dutch formally recognized Indonesian sovereignty. Indonesia became the Republic of the United States of Indonesia (RIS), comprising 16 federal states. Dissatisfaction with the federal system led to the restoration of a unitary state (NKRI) in August 1950, with one central national government.
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2>II. Liberal Democracy Era</h2>
+    <span class="period">1950–1959</span>
+    <p>From 1950, Indonesia adopted a parliamentary democracy, but it created numerous problems: frequent changes of prime ministers, weak coalition governments, and regional rebellions.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>1955 Federal Election</h4>
+        <p>Indonesia's first democratic election, considered free and fair. The four largest parties were PNI, Masyumi, NU, and PKI (Communist Party).</p>
+      </div>
+      <div class="col-card">
+        <h4>1955 Bandung Conference</h4>
+        <p>Hosted Asian and African countries to discuss anti-colonial movements. It laid the foundation for the Non-Aligned Movement and elevated Indonesia's international standing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2>III. Guided Democracy Era</h2>
+    <span class="period">1959–1965</span>
+    <p>Due to the problems of the liberal democracy period, President Sukarno dissolved parliament, restored the 1945 Constitution, and introduced Guided Democracy.</p>
+
+    <h3>Core Ideology: Nasakom</h3>
+    <p>A blend of Nationalism, Religion, and Communism, attempting to unite the military, religious groups, and the PKI under a single ideology.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Economic Situation</h4>
+        <p>Hyperinflation, economic deterioration, and poor fiscal management.</p>
+      </div>
+      <div class="col-card">
+        <h4>Foreign Policy</h4>
+        <p>Strongly anti-Western; closer relations with China and the Soviet Union. Indonesia considered Malaysia a British neo-colonial project and withdrew from the United Nations in 1965 after Malaysia became a Security Council member.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2>IV. The 30 September Movement & Regime Change</h2>
+    <span class="period">1965</span>
+    <p>September 30 – October 1, 1965, marks one of Indonesia's most significant turning points.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Official Indonesian Narrative</h4>
+        <p>Seven senior army generals were kidnapped (six killed, one survived). The PKI was accused of orchestrating the kidnappings to overthrow President Sukarno and establish a communist state. The generals were portrayed as loyal officers protecting Sukarno, regarded as national heroes.</p>
+      </div>
+      <div class="col-card">
+        <h4>Alternative Interpretation (Based on Historical Research)</h4>
+        <p>Several senior generals were planning to remove Sukarno and establish an anti-communist government. The PKI, as Sukarno's political ally, acted against those generals to protect his government. Some accounts suggest this scenario was orchestrated by the CIA, with General Suharto playing a key role in consolidating power to limit communism in Asia.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Consequences:</strong> General Suharto took military control. Mass anti-communist purges followed, with an estimated 500,000–1,000,000 deaths. The PKI was destroyed. In March 1966, Sukarno signed the March 11 Order (Supersem), transferring authority to General Suharto under armed intimidation. Suharto consolidated power and replaced Sukarno as president. Sukarno was placed under house arrest until his death in 1970.
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2>V. The New Order</h2>
+    <span class="period">1966–1998</span>
+    <p>Suharto served for 32 years, making him Indonesia's longest-serving president. The government was highly centralized; the military played a major political role, and political opposition was heavily restricted.</p>
+
+    <h3>Economic Policies & Achievements</h3>
+    <p>Shift toward capitalism, foreign investment, and macroeconomic stability. The government worked closely with the "Berkeley Mafia" economists.</p>
+    <ul>
+      <li>Rapid GDP growth and infrastructure expansion</li>
+      <li>Green Revolution increased rice production</li>
+      <li>Poverty declined substantially</li>
+      <li>Indonesia became one of East Asia's fastest-growing economies</li>
+    </ul>
+
+    <h3>Serious Problems</h3>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">$15–35B</div>
+        <div class="label">Estimated personal corruption by Suharto</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">32 Years</div>
+        <div class="label">Suharto's time in power</div>
+      </div>
+    </div>
+    <p>Corruption, nepotism, and crony capitalism were rampant. Suharto is widely cited as having the largest estimated personal corruption by a head of state in world history.</p>
+
+    <h3>Foreign Policy & Controversies</h3>
+    <ul>
+      <li>Returned to the United Nations and Western cooperation</li>
+      <li>1967: Indonesia became a founding member of ASEAN</li>
+      <li>Invaded East Timor in 1975; international criticism persisted for decades; backed by the U.S. military</li>
+      <li>The Grasberg gold mine in Papua was operated by U.S. company Freeport-McMoRan; most of the gold produced (>1,000 tonnes) benefited the U.S. rather than contributing to Indonesia's development</li>
+    </ul>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2>VI. Asian Financial Crisis & the Fall of Suharto</h2>
+    <span class="period">1997–1998</span>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="num">2,500→17,000</div>
+        <div class="label">Rupiah per USD collapse</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">32 Years</div>
+        <div class="label">End of Suharto's rule</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Economic Effects</h4>
+        <p>The rupiah collapsed, banking crisis, massive unemployment, and inflation surged.</p>
+      </div>
+      <div class="col-card">
+        <h4>Social Effects</h4>
+        <p>Nationwide riots and violence erupted. Many ethnic Chinese Indonesians became targets of violence. Activist kidnappings occurred, orchestrated by General Prabowo (the current president).</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Result:</strong> On May 21, 1998, Suharto resigned after 32 years in power. Vice President Habibie became president.
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2>VII. Reformasi Era</h2>
+    <span class="period">1998–Present</span>
+
+    <div class="president-grid">
+      <div class="president-card">
+        <div class="name">B. J. Habibie</div>
+        <div class="years">1998–1999</div>
+        <div class="desc">Introduced press freedom, political party liberalization, and decentralization reforms. East Timor voted for independence in a 1999 referendum.</div>
+      </div>
+      <div class="president-card">
+        <div class="name">Abdurrahman Wahid</div>
+        <div class="years">1999–2001</div>
+        <div class="desc">Expanded civil liberties, improved minority rights, and promoted religious pluralism. Faced numerous political conflicts and was impeached in 2001.</div>
+      </div>
+      <div class="president-card">
+        <div class="name">Megawati Sukarnoputri</div>
+        <div class="years">2001–2004</div>
+        <div class="desc">Achieved political stabilization and continued democratic consolidation. Faced the terrorism threat; the 2002 Bali bombing was the most significant event.</div>
+      </div>
+      <div class="president-card">
+        <div class="name">Susilo Bambang Yudhoyono (SBY)</div>
+        <div class="years">2004–2014</div>
+        <div class="desc">First directly elected president, served two terms. Achieved economic stability and growth, the 2005 Aceh Peace Agreement, and continued growth during the 2008 global financial crisis.</div>
+      </div>
+    </div>
+
+    <h3>Joko Widodo (2014–2024)</h3>
+    <p>First president not from a military or political elite background.</p>
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Key Achievements</h4>
+        <ul>
+          <li>Massive infrastructure investment: toll roads, ports, airports, MRT, high-speed rail, dams</li>
+          <li>Improved healthcare access and social assistance programs</li>
+          <li>Managed COVID-19 response and economic recovery</li>
+          <li>Downstream industrialization policy to reduce raw mineral exports</li>
+          <li>Capital relocation from Jakarta to Nusantara in East Kalimantan</li>
+          <li>Chaired the G20 in 2022</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h4>Key Problems</h4>
+        <ul>
+          <li>Democratic backsliding</li>
+          <li>Continued deforestation</li>
+          <li>Nepotism allegations</li>
+          <li>Corruption scandals</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Prabowo Subianto (2024–Present)</h3>
+    <p>The current president continues infrastructure and downstream industrialization policies, advances the development of Nusantara, and launched a nationwide free nutritious meals (MBG) program for students. He emphasizes food security, energy security, and national defense modernization. In foreign policy, he maintains the non-aligned "free and active" diplomacy, seeking stronger economic and defense cooperation with a wide range of partners including ASEAN, China, the U.S., Japan, Australia, and Europe.</p>
+
+    <h3>Scandals of the Current Administration</h3>
+    <ul>
+      <li>Decline of the Indonesia Stock Exchange due to policies unsupportive of capital markets and investor confidence</li>
+      <li>Nepotism and political dynasty; vice president's lack of experience</li>
+      <li>Military involvement in civilian affairs heavily increased</li>
+      <li>Law enforcement corruption cases</li>
+      <li>State-owned oil company mega-corruption case: Rp 978.5 trillion loss (~US$59 billion)</li>
+      <li>Large cabinet controversy: political accommodation for coalition supporters</li>
+      <li>Free meal program controversies: poisoning incidents, poor management, budget allocation issues</li>
+      <li>Frequent overseas trips considered costly and excessive</li>
+      <li>Restrictions on freedom of speech</li>
+      <li>Sovereign fund (Danantara) controversy</li>
+    </ul>
+  </div>
+
+  <!-- Discussion -->
+  <div class="discussion" id="s8">
+    <h2>Discussion & Q&A</h2>
+    <div class="qa">
+      <div class="q">Q: Who do you consider the most important president since independence, and what has been the biggest negative impact?</div>
+      <p>Justin considers Joko Widodo the most important president because he successfully built Indonesia into a more developed country, with infrastructure projects advancing rapidly and cooperation with many countries, especially China. Under his tenure, Indonesia's development pace surpassed that of previous presidents. Regarding negative impacts, Justin believes corruption cases are widespread across the country and have yet to be eliminated.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Research Intern First Presentation · July 16, 2026
+</footer>
+
+</body>
+</html>

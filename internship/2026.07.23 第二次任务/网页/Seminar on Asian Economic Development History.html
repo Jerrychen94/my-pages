@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seminar on Asian Economic Development History (2026.07.23)</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --primary-dark: #0f2640;
+    --accent: #b8860b;
+    --accent-light: #d4a843;
+    --bg: #f5f3ef;
+    --card-bg: #ffffff;
+    --text: #2d2d2d;
+    --text-light: #6b6b6b;
+    --border: #d8cfc2;
+    --highlight: #faf6ee;
+    --teal: #2a6b6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    font-size: 16px;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 60%, #0a1a2e 100%);
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 600px 400px at 80% 20%, rgba(184,134,11,0.12), transparent);
+  }
+  .hero h1 { font-size: 2.2em; font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; position: relative; }
+  .hero .subtitle { font-size: 1.05em; opacity: 0.85; margin-bottom: 8px; position: relative; }
+  .hero .meta { font-size: 0.88em; opacity: 0.65; position: relative; }
+  .hero .meta-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 16px; position: relative; }
+  .hero .meta-item { background: rgba(255,255,255,0.08); padding: 6px 16px; border-radius: 100px; font-size: 0.85em; backdrop-filter: blur(4px); }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+
+  /* TOC */
+  .toc {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--accent);
+  }
+  .toc h2 { font-size: 1.15em; color: var(--primary); margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { color: var(--accent); text-decoration: underline; }
+  .toc .sub { padding-left: 18px; list-style-type: disc; }
+
+  /* Section card */
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 1.45em;
+    color: var(--primary);
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section .section-sub {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .section h3 {
+    font-size: 1.08em;
+    color: var(--primary-dark);
+    margin: 22px 0 8px;
+  }
+  .section p { margin-bottom: 12px; }
+  .section ul, .section ol { padding-left: 20px; margin-bottom: 12px; }
+  .section li { margin-bottom: 6px; }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .highlight-box strong { color: var(--primary-dark); }
+
+  /* Stat row */
+  .stat-row {
+    display: flex;
+    gap: 14px;
+    margin: 18px 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1;
+    min-width: 110px;
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-item .label {
+    font-size: 0.78em;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* Comparison grid */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .compare-card {
+    background: var(--highlight);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--accent);
+  }
+  .compare-card h4 {
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+  .compare-card p {
+    font-size: 0.92em;
+    margin-bottom: 0;
+  }
+
+  /* Country card */
+  .country-card {
+    background: linear-gradient(135deg, #faf8f4 0%, #f5f0e8 100%);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 18px 0;
+    border: 1px solid var(--border);
+  }
+  .country-card h3 {
+    color: var(--primary);
+    margin: 0 0 10px;
+    font-size: 1.15em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .country-card .flag { font-size: 1.4em; }
+
+  /* Discussion quote */
+  .discussion-quote {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8eef4 100%);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    border-left: 4px solid var(--teal);
+  }
+  .discussion-quote .speaker {
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+  .discussion-quote p { margin-bottom: 8px; font-size: 0.95em; }
+  .discussion-quote p:last-child { margin-bottom: 0; }
+
+  /* Key takeaway */
+  .takeaway {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  .takeaway h4 { color: var(--accent-light); margin-bottom: 10px; font-size: 1.05em; }
+  .takeaway ul { padding-left: 18px; }
+  .takeaway li { margin-bottom: 6px; opacity: 0.9; font-size: 0.95em; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--text-light);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+  .footer a { color: var(--primary); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6em; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .stat-row { flex-direction: column; }
+    .section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Seminar on Asian Economic Development History</h1>
+  <p class="subtitle">Historical Lessons and Contemporary Challenges of Post-WWII Asian Economic Rise</p>
+  <p class="meta">A Comparative Study of the "Asian Four Little Dragons" and "Tiger Cub Economies"</p>
+  <div class="meta-row">
+    <span class="meta-item">📅 July 23, 2026</span>
+    <span class="meta-item">💻 Online Meeting (Tencent Meeting)</span>
+    <span class="meta-item">🕐 15:27 – 17:15</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>📑 Table of Contents</h2>
+    <ol>
+      <li><a href="#overview">Meeting Overview</a></li>
+      <li><a href="#east-asia">The Rise of East Asian Economies: Japan and the Four Little Dragons</a>
+        <ul class="sub">
+          <li><a href="#ea-origin">Historical Starting Points and Common Features</a></li>
+          <li><a href="#ea-coldwar">The Structural Role of Cold War Geopolitics</a></li>
+          <li><a href="#ea-japan">Japan: The Miracle and Limitations of the Leading Goose</a></li>
+          <li><a href="#ea-korea">South Korea: The Miracle on the Han River</a></li>
+          <li><a href="#ea-taiwan">Taiwan: The SME Miracle and the Semiconductor Bet</a></li>
+          <li><a href="#ea-singapore">Singapore: Planned Prosperity</a></li>
+          <li><a href="#ea-hk">Hong Kong: Positive Non-Interventionism</a></li>
+          <li><a href="#ea-compare">Comparison and Reflection</a></li>
+        </ul>
+      </li>
+      <li><a href="#tiger-cubs">The Rise and Challenges of Southeast Asian Tiger Cub Economies</a>
+        <ul class="sub">
+          <li><a href="#tc-overview">Overview of the Tiger Cub Economies</a></li>
+          <li><a href="#tc-indo">Indonesia</a></li>
+          <li><a href="#tc-thai">Thailand</a></li>
+          <li><a href="#tc-malaysia">Malaysia</a></li>
+          <li><a href="#tc-ph">The Philippines</a></li>
+          <li><a href="#tc-challenge">Common Challenges and Strategic Recommendations</a></li>
+        </ul>
+      </li>
+      <li><a href="#discussion">Discussion and Commentary</a></li>
+    </ol>
+  </div>
+
+  <!-- Meeting Overview -->
+  <div class="section" id="overview">
+    <h2>I. Meeting Overview</h2>
+    <span class="section-sub">会议概况</span>
+    <h3>Participants</h3>
+    <ul>
+      <li><strong>Research Institute, Southern University of Science and Technology</strong>: Jerry Chen (谌江瑞) — Meeting chair/moderator</li>
+      <li><strong>Interns</strong>:
+        <ul>
+          <li>Bui Cao Minh — Vietnamese intern, Presenter 1</li>
+          <li>Justin Ivan Jorianto — Indonesian intern, Presenter 2</li>
+          <li>Guo Kaixuan — Commentary and discussion</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="highlight-box">
+      <strong>Topic:</strong> Historical Lessons and Contemporary Challenges of Post-WWII Asian Economic Rise — A Comparative Study of the "Asian Four Little Dragons" and "Tiger Cub Economies"
+    </div>
+  </div>
+
+  <!-- ==================== East Asia ==================== -->
+  <div class="section" id="east-asia">
+    <h2>II. The Rise of East Asian Economies: Japan and the Four Little Dragons</h2>
+    <span class="section-sub">东亚经济体的崛起</span>
+
+    <!-- Historical Starting Points -->
+    <div id="ea-origin">
+      <h3>(1) Historical Starting Points and Common Features</h3>
+      <p>Post-1945 East Asia was not a favored region for economic development. Development economists at the time widely believed that Latin America, with its abundant natural resources, would lead postwar development. Yet the East Asian economies achieved one of the most remarkable growth miracles in human economic history from the ruins of war.</p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">~70×</div>
+          <div class="label">Japan per capita GDP growth</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">~120×</div>
+          <div class="label">Hong Kong per capita GDP growth</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">~180×</div>
+          <div class="label">Singapore per capita GDP growth</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">~200×</div>
+          <div class="label">Taiwan/S. Korea per capita GDP growth</div>
+        </div>
+      </div>
+
+      <p>South Korea and Ghana had similar income levels in the 1960s; today South Korea has become one of the world's most advanced economies. The five economies shared five fundamental characteristics:</p>
+      <ol>
+        <li><strong>Effective state capacity</strong> — competent governments capable of designing and consistently implementing long-term policies</li>
+        <li><strong>Human capital investment</strong> — heavy investment in education and technical skills before becoming industrial powers</li>
+        <li><strong>Export-oriented industrialization</strong> — encouraging firms to compete in international markets</li>
+        <li><strong>Cold War geopolitical support</strong></li>
+        <li><strong>Continuous industrial upgrading</strong> — from textiles to automobiles, electronics, semiconductors, and advanced technologies</li>
+      </ol>
+    </div>
+
+    <!-- Cold War -->
+    <div id="ea-coldwar">
+      <h3>(2) The Structural Role of Cold War Geopolitics</h3>
+      <p>The Cold War was one of the key external conditions enabling these economies' rapid development. Due to the threat of communist expansion, economic growth became a matter of U.S. national security rather than merely economic policy. This environment provided four major advantages:</p>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>🛡️ Security Guarantees</h4>
+          <p>The U.S. provided security protection, allowing countries like Japan to dramatically reduce defense spending and redirect resources toward industrial development</p>
+        </div>
+        <div class="compare-card">
+          <h4>💰 Foreign Aid</h4>
+          <p>These economies received substantial foreign aid, particularly South Korea and Taiwan in the 1950s</p>
+        </div>
+        <div class="compare-card">
+          <h4>🏪 Market Access</h4>
+          <p>They enjoyed special access to the U.S. market, able to export freely to the world's largest consumer market</p>
+        </div>
+        <div class="compare-card">
+          <h4>🏛️ Regime Tolerance</h4>
+          <p>Western governments generally tolerated authoritarian regimes as long as they remained reliable anti-communist allies</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <strong>Notable:</strong> These geopolitical advantages are virtually impossible to replicate in today's world.
+      </div>
+    </div>
+
+    <!-- Japan -->
+    <div id="ea-japan">
+      <h3>(3) Japan: The Miracle and Limitations of the Leading Goose</h3>
+      <p>The most paradoxical aspect of Japan's economic miracle is that its most important reforms were implemented during the American occupation (1945–1952). Land reform abolished absentee landlordism; the occupation authorities dismantled the zaibatsu conglomerates; and the Dodge Line fixed the exchange rate at 360 yen to the dollar — maintained for 22 years.</p>
+
+      <div class="highlight-box">
+        <strong>The Yoshida Doctrine:</strong> Not to rebuild military power, but to concentrate national resources on economic development while relying on the United States for security guarantees. Defense spending maintained at approximately 1% of GDP.
+      </div>
+
+      <p><strong>The Ministry of International Trade and Industry (MITI)</strong> was the most famous institutional apparatus behind Japan's economic miracle. It did not replace market forces but guided them — controlling access to foreign exchange, coordinating technology transfers, providing protection in industries' early stages while encouraging firms to compete internationally. This "developmental state" model was highly influential.</p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">9.3%</div>
+          <div class="label">Average annual growth<br>(1951–1973)</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">4.5M+</div>
+          <div class="label">Annual auto production<br>(from under 70,000)</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">2%→8%</div>
+          <div class="label">Share of global GDP</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">>20%</div>
+          <div class="label">Household savings rate</div>
+        </div>
+      </div>
+
+      <p>However, the developmental state model eventually hit its limits: the Nixon Shock of 1971, the 1973 oil crisis, and the 1985 Plaza Accord. An extremely loose monetary policy fueled a massive asset bubble in the late 1980s, and after the bubble burst in the early 1990s, Japan entered its "Lost Decades."</p>
+      <div class="highlight-box">
+        <strong>Core lesson:</strong> The developmental state excelled at helping countries catch up to global leaders, but once the technological frontier was reached, the same institutions became less effective at sustaining long-term innovation.
+      </div>
+    </div>
+
+    <!-- South Korea -->
+    <div id="ea-korea">
+      <h3>(4) South Korea: The Miracle on the Han River</h3>
+      <p>South Korea's success began with a series of events that seemed disastrous at the time. Land reform in 1949–1950 broke up the large landlord class, making South Korea one of the most egalitarian rural societies in the developing world. The literacy rate rose rapidly from approximately 22% in 1945 to over 70% by 1960 and exceeded 96% by 1990.</p>
+
+      <p>The turning point came in 1961 when Park Chung-hee seized power through a military coup. He established the Economic Planning Board, nationalized the banking sector, and directed credit according to national priorities. Major family-owned chaebol conglomerates — Samsung, Hyundai, LG, Daewoo — received subsidized loans but had to meet ambitious export targets.</p>
+
+      <div class="highlight-box">
+        <strong>Heavy and Chemical Industrialization (HCI) Drive (early 1970s):</strong> Considered by many economists as one of the boldest industrial policies of the 20th century. South Korea invested heavily in six strategic sectors — steel, shipbuilding, petrochemicals, machinery, electronics, and non-ferrous metals. The World Bank and IMF both criticized this move, yet the long-term results were remarkable: POSCO became a world-class steel producer, Hyundai grew into a global shipbuilding leader, and Samsung ultimately became one of the world's largest electronics companies.
+      </div>
+
+      <p>After democratization in 1987, workers gained stronger bargaining power and wages rose substantially, pushing Korean firms toward higher value-added industries. The 1997 Asian Financial Crisis forced South Korea to accept a record $58 billion IMF bailout package, but also compelled major reforms in banking, corporate governance, and financial regulation.</p>
+    </div>
+
+    <!-- Taiwan -->
+    <div id="ea-taiwan">
+      <h3>(5) Taiwan: The SME Miracle and the Semiconductor Bet</h3>
+      <p>Taiwan's land reform is widely recognized as one of the most successful cases in modern history, proceeding in three stages: reducing the legal ceiling on agricultural rents to 37.5%; gradually selling former Japanese colonial land to tenants; and implementing the "Land to the Tiller" program, transforming former landlords into investors in Taiwan's emerging industrial sector.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>🇰🇷 South Korea Model</h4>
+          <p>Relied on giant chaebols, greater income inequality, severely impacted by the 1997 crisis</p>
+        </div>
+        <div class="compare-card">
+          <h4>🇹🇼 Taiwan Model</h4>
+          <p>Dominated by SMEs, more equitable income distribution, barely affected by the 1997 crisis, but lacked internationally recognized consumer brands</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>The "Silicon Shield":</strong> In the 1980s, the government established the Hsinchu Science Park, giving birth to TSMC (Taiwan Semiconductor Manufacturing Company). TSMC does not compete with companies like Apple or NVIDIA in chip design; instead, it focuses on contract manufacturing of semiconductors. This pure-play foundry model revolutionized the global semiconductor industry. Today, Taiwan produces the vast majority of the world's most advanced semiconductor chips — simultaneously its greatest economic achievement and core security asset, and the single largest risk point in global supply chains.
+      </div>
+    </div>
+
+    <!-- Singapore -->
+    <div id="ea-singapore">
+      <h3>(6) Singapore: Planned Prosperity</h3>
+      <p>Singapore addressed its challenges with a fundamentally different strategy — rather than protecting domestic industries, it actively welcomed foreign multinational corporations. The Economic Development Board (EDB) played a central role in attracting international investment and identifying industries with long-term growth potential. Simultaneously, Singapore developed world-class infrastructure, maintained an exceptionally efficient civil service, and enforced strict anti-corruption policies.</p>
+
+      <div class="highlight-box">
+        <strong>Central Provident Fund (CPF) System:</strong> Workers and employers contribute a percentage of wages to individual savings accounts, serving multiple purposes simultaneously: financing retirement, healthcare, and housing while providing the government with substantial domestic long-term investment capital. Through the Housing and Development Board (HDB), approximately 80% of the resident population lives in HDB flats, and about 90% of households own their homes.
+      </div>
+      <p>Singapore's development model demonstrates that economic policy is not merely about raising GDP but also about strengthening long-term social cohesion.</p>
+    </div>
+
+    <!-- Hong Kong -->
+    <div id="ea-hk">
+      <h3>(7) Hong Kong: Positive Non-Interventionism</h3>
+      <p>Unlike the other four economies, Hong Kong pursued "positive non-interventionism," closely associated with Financial Secretary Sir John Cowperthwaite. The government did not direct industrial development but focused on maintaining low tax rates, protecting property rights, and ensuring the rule of law.</p>
+
+      <p>However, the "free market" narrative requires careful examination:</p>
+      <ul>
+        <li>The government owned all land, and land premiums financed most public expenditure — a de facto land tax</li>
+        <li>After the 1953 Shek Kip Mei fire, the government launched a public housing program that accommodated approximately half the population by the 1980s</li>
+        <li>Subsidized housing suppressed the wage floor, making low-cost manufacturing possible</li>
+        <li>Hong Kong was an unelected British colonial government with no democratic redistribution pressure</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Core insight:</strong> Secure property rights, the rule of law, open trade, and low transaction costs can substitute for industrial policy — not that the state can be entirely dispensed with.
+      </div>
+    </div>
+
+    <!-- Comparison -->
+    <div id="ea-compare">
+      <h3>(8) Comparison and Reflection</h3>
+      <p>There is no single blueprint for economic success. Despite enormous institutional differences — from dirigisme to laissez-faire, from chaebols to SMEs — the underlying functions remained consistent: macroeconomic stability, high savings, mass education, world market discipline, and credible long-term-horizon states.</p>
+
+      <div class="takeaway">
+        <h4>Key Differences Between East Asia and Latin America / Sub-Saharan Africa</h4>
+        <ul>
+          <li>Early implementation of radical land reform, reducing inequality and eliminating the political veto power of the landlord class</li>
+          <li>Import substitution used only briefly, replaced by export discipline by the mid-1960s</li>
+          <li>Subsidies were reciprocal — conditional on measurable export performance</li>
+          <li>Domestic savings rates of 25% to 40% financed investment without heavy foreign borrowing</li>
+          <li>Bureaucracies were merit-based, insulated from short-term political capture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Tiger Cubs ==================== -->
+  <div class="section" id="tiger-cubs">
+    <h2>III. The Rise and Challenges of Southeast Asian Tiger Cub Economies</h2>
+    <span class="section-sub">东南亚虎仔经济体的崛起与挑战</span>
+
+    <!-- Overview -->
+    <div id="tc-overview">
+      <h3>(1) Overview of the Tiger Cub Economies</h3>
+      <p>The "Tiger Cub Economies" refer to four emerging economies: Indonesia, Malaysia, the Philippines, and Thailand. The four countries collectively account for over 80% of ASEAN's GDP. According to Asian Development Bank projections, Southeast Asia as a whole is expected to become the world's fourth-largest economy by 2050, with ASEAN GDP growth projected at 4.7% in 2026.</p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="num">>80%</div>
+          <div class="label">Share of ASEAN GDP</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">4.7%</div>
+          <div class="label">2026 ASEAN GDP<br>projected growth</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">4th</div>
+          <div class="label">Projected global rank<br>by 2050</div>
+        </div>
+      </div>
+
+      <p>The four countries share three major characteristics: export-oriented strategies focused on manufacturing upgrading; strong reliance on foreign investment; and GDP growth consistently exceeding global averages.</p>
+    </div>
+
+    <!-- Indonesia -->
+    <div id="tc-indo">
+      <div class="country-card">
+        <h3><span class="flag">🇮🇩</span> (2) Indonesia: Southeast Asia's Largest Economy</h3>
+        <p><strong>GDP growth projected at 5.3% in 2026</strong>, driven by domestic consumption, a growing middle class, and robust commodities performance.</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Commodities & Agriculture</h4>
+            <p>World's largest palm oil producer and exporter; 2025 exports surged to $290.12 billion (+26.67%); major thermal coal exporter with 2024 exports of $26.1 billion</p>
+          </div>
+          <div class="compare-card">
+            <h4>Manufacturing</h4>
+            <p>Encompassing textiles, food & beverages, automotive assembly, and electronics, contributing 40%–42% of GDP and serving as the largest source of formal employment</p>
+          </div>
+        </div>
+        <p><strong>Three phases:</strong> ①1960s–1980s Import Substitution Industrialization (ISI) → ②Mid-1980s oil price collapse forced shift to Export-Oriented Industrialization → ③Current challenges: infrastructure gaps, bureaucratic red tape, and environmental sustainability issues.</p>
+      </div>
+    </div>
+
+    <!-- Thailand -->
+    <div id="tc-thai">
+      <div class="country-card">
+        <h3><span class="flag">🇹🇭</span> (3) Thailand: Resilience Through Tourism and Automotive Manufacturing</h3>
+        <p><strong>GDP growth projected at 2.2% in 2025</strong>, driven by tourism recovery and high-value manufacturing.</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>🏖️ Tourism</h4>
+            <p>Expected to receive 32.9 million tourists in 2025, boosting domestic consumption and creating jobs</p>
+          </div>
+          <div class="compare-card">
+            <h4>🚗 Automotive</h4>
+            <p>Known as the "Detroit of the East," accelerating EV production and leading ASEAN automotive exports</p>
+          </div>
+        </div>
+        <p><strong>Three major risks:</strong> Political instability (frequent government changes); rapid population aging; over-reliance on tourism.</p>
+      </div>
+    </div>
+
+    <!-- Malaysia -->
+    <div id="tc-malaysia">
+      <div class="country-card">
+        <h3><span class="flag">🇲🇾</span> (4) Malaysia: A Global Semiconductor Leader</h3>
+        <p><strong>GDP growth target of 5.0% for 2026</strong>, driven by domestic demand and robust E&E sector exports.</p>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="num">~13%</div>
+            <div class="label">Global semiconductor<br>ATP capacity share</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">RM 400B</div>
+            <div class="label">(~$85 billion)<br>Semiconductor revenue (2025)</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">22.5%</div>
+            <div class="label">E&E sector<br>2025 projected growth</div>
+          </div>
+        </div>
+        <p><strong>Two phases:</strong> ①1971–1990 New Economic Policy (NEP) targeting poverty eradication and ethnic economic disparities → ②1990s onward shift to high-tech manufacturing. <strong>Challenges:</strong> High-skilled engineer shortages; ethnic and religious divisions; fiscal deficit constraints.</p>
+      </div>
+    </div>
+
+    <!-- Philippines -->
+    <div id="tc-ph">
+      <div class="country-card">
+        <h3><span class="flag">🇵🇭</span> (5) The Philippines: Global Dominance in BPO</h3>
+        <p><strong>GDP growth target of 4.0% for 2026</strong>, driven by domestic demand and the globally leading BPO sector.</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>💻 IT-BPM Leadership</h4>
+            <p>In 2025, surpassed overseas remittances as the primary source of foreign exchange, dominating global voice and non-voice outsourcing</p>
+          </div>
+          <div class="compare-card">
+            <h4>💸 Overseas Remittances</h4>
+            <p>Remain a stable lifeline, driving household consumption and providing a continuous buffer against economic shocks</p>
+          </div>
+        </div>
+        <p><strong>Key challenges:</strong> High inflation (projected at 6.8% in 2026 — highest in ASEAN); weak infrastructure; persistent corruption.</p>
+      </div>
+    </div>
+
+    <!-- Common Challenges -->
+    <div id="tc-challenge">
+      <h3>(6) Common Challenges and Strategic Recommendations</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>📈 Inflationary Pressure</h4>
+          <p>Philippines leads at 6.8%, regional average 3.5%, eroding purchasing power</p>
+        </div>
+        <div class="compare-card">
+          <h4>⚖️ Income Inequality</h4>
+          <p>Widening urban-rural and skilled-unskilled gaps, hindering social mobility</p>
+        </div>
+        <div class="compare-card">
+          <h4>🏛️ Persistent Corruption</h4>
+          <p>Undermining business environment, deterring foreign investment, weakening public trust</p>
+        </div>
+        <div class="compare-card">
+          <h4>🌐 Global Dependency</h4>
+          <p>Heavy reliance on external demand and FDI, vulnerable to global economic fluctuations</p>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <h4>Three Strategic Recommendations</h4>
+        <ul>
+          <li><strong>Economic Diversification:</strong> Deepen education reform (especially STEM), accelerate cross-border infrastructure connectivity, promote high-value industries such as financial services, logistics, and digital services</li>
+          <li><strong>Human Capital Investment:</strong> Build vocational training networks, invest in AI/big data/cloud computing digital infrastructure, implement attractive talent policies</li>
+          <li><strong>Deepening Regional Integration:</strong> Eliminate non-tariff barriers, strengthen industrial policy coordination, develop deep processing of agricultural products to increase added value</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Discussion ==================== -->
+  <div class="section" id="discussion">
+    <h2>IV. Discussion and Commentary</h2>
+    <span class="section-sub">讨论与评述</span>
+
+    <h3>(1) The Profound Impact of Globalization and Deglobalization</h3>
+    <div class="discussion-quote">
+      <div class="speaker">🗣️ Guo Kaixuan (PwC Global Trade Services)</div>
+      <p>Deglobalization trends have intensified in recent years. The United States has issued a series of Export Administration Regulations and sanctions lists, promoted manufacturing reshoring, and gradually reduced technology sharing with Asian partners. These countries face a choice: should they continue investing in their competitive advantages and replicate the "flying geese model" for industrial succession within ASEAN, or should they accept the reality of deglobalization and exchange unequal terms for technology access from developed countries?</p>
+    </div>
+    <div class="discussion-quote">
+      <div class="speaker">🗣️ Jerry Chen (谌江瑞)</div>
+      <p>The global economy currently faces resilience challenges. Over-reliance on a single country or region carries enormous risk when major shocks occur. From the perspective of international production capacity competition, China's current approach considers not only its own interests but also ESG dimensions and how to achieve sustained and stable global development. A balance is needed between division of labor cooperation and risk management.</p>
+    </div>
+
+    <h3>(2) The Central Role of the Business Environment</h3>
+    <div class="discussion-quote">
+      <div class="speaker">🗣️ Jerry Chen (谌江瑞)</div>
+      <p>The business environment is crucial for national development, with prerequisites including political stability, talent reserves, and infrastructure development ("to get rich, first build roads"). Taking Tesla and Apple establishing factories in China as examples — China provides land, resources, and protection; this is reciprocal: foreign investment gains market access, while China gains technology and employment. The key is stable policy expectations. For every country, a good business environment remains a permanent development imperative.</p>
+    </div>
+
+    <h3>(3) Historical Lessons and Future Outlook</h3>
+    <div class="takeaway">
+      <h4>Core Lessons from the East Asian Experience</h4>
+      <ul>
+        <li><strong>There is no single model for success</strong></li>
+        <li><strong>The sequence of development matters more than ideology</strong> — achieving equality and education first, then developing light industry, then advancing to heavy industry and technology</li>
+        <li><strong>Discipline is key</strong> — support is conditional and withdrawable</li>
+        <li><strong>Geopolitics is a real input factor</strong> and is no longer replicable today</li>
+        <li><strong>Development models have a shelf life</strong> — they work best during the catch-up phase and face transformation challenges once the technological frontier is reached</li>
+        <li><strong>The costs of development are real</strong> — authoritarian rule, labor suppression, and environmental degradation are costs that must be confronted</li>
+      </ul>
+    </div>
+    <div class="highlight-box">
+      <strong>Future research direction:</strong> Subsequent research will shift to a Western perspective, and in the final stage incorporate China's Belt and Road Initiative and its development relationships with various countries.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Research Internship Project · Asian Economic Development Studies · July 23, 2026</p>
+  <p style="margin-top:8px;"><a href="../../index.html">← Back to Home</a></p>
+</div>
+
+</body>
+</html>
