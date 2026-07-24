@@ -4,115 +4,622 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jerry 的小站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
-    background: #fafafa;
-    color: #333;
-    padding: 60px 20px;
-    max-width: 640px;
-    margin: 0 auto;
+:root {
+  --bg: #F6F3ED;
+  --bg-warm: #EDE8DF;
+  --surface: #FFFFFF;
+  --text: #1C1917;
+  --text-secondary: #57534E;
+  --text-muted: #A8A29E;
+  --accent: #B45309;
+  --accent-light: #FEF3C7;
+  --accent-hover: #92400E;
+  --border: #E7E0D5;
+  --border-light: #F0EBE3;
+  --tag-travel: #0D9488;
+  --tag-travel-bg: #CCFBF1;
+  --tag-project: #7C3AED;
+  --tag-project-bg: #EDE9FE;
+  --tag-learn: #2563EB;
+  --tag-learn-bg: #DBEAFE;
+  --serif: 'Noto Serif SC', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --display: 'Source Serif 4', 'Noto Serif SC', Georgia, serif;
+  --mono: 'DM Mono', 'Consolas', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== GRAIN OVERLAY ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  padding: 48px 0 0;
+  position: relative;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.logo {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 32px 0 56px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.greeting {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.2s;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 6vw, 44px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.35s;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-family: var(--display);
+  color: var(--accent);
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 480px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.5s;
+}
+
+/* ===== ARTICLE LIST ===== */
+.articles {
+  padding: 48px 0 80px;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.65s;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.article-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards;
+  transition: all 0.3s ease;
+}
+
+.article-card:last-child {
+  border-bottom: none;
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  right: -24px;
+  top: 0;
+  bottom: 0;
+  background: var(--surface);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.article-card:hover::before {
+  opacity: 1;
+}
+
+.article-card-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-card-inner {
+  transform: translateX(4px);
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.article-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+
+.tag-travel {
+  color: var(--tag-travel);
+  background: var(--tag-travel-bg);
+}
+
+.tag-project {
+  color: var(--tag-project);
+  background: var(--tag-project-bg);
+}
+
+.tag-learn {
+  color: var(--tag-learn);
+  background: var(--tag-learn-bg);
+}
+
+.article-date {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.article-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.article-card:hover .article-title {
+  color: var(--accent);
+}
+
+.article-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.article-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: var(--accent);
+  font-size: 18px;
+  z-index: 2;
+}
+
+.article-card:hover .article-arrow {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ===== FEATURED CARD ===== */
+.featured-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(135deg, #1C1917 0%, #292524 100%);
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeUp 0.5s ease forwards 0.75s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(28,25,23,0.2);
+}
+
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(180,83,9,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.featured-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.featured-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.featured-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.featured-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: #FAFAF9;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.featured-desc {
+  font-size: 14px;
+  color: #A8A29E;
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+.featured-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #78716C;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 0 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-text {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* ===== DECORATIVE ===== */
+.deco-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #D97706, var(--accent));
+  z-index: 100;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-  h1 {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.article-card:nth-child(1) { animation-delay: 0.85s; }
+.article-card:nth-child(2) { animation-delay: 0.95s; }
+.article-card:nth-child(3) { animation-delay: 1.05s; }
+.article-card:nth-child(4) { animation-delay: 1.15s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero h1 {
     font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 6px;
   }
-  .subtitle {
-    color: #888;
-    font-size: 14px;
-    margin-bottom: 48px;
+
+  .featured-card {
+    padding: 28px 24px;
   }
-  .category {
-    margin-bottom: 36px;
+
+  .featured-title {
+    font-size: 20px;
   }
-  .category-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #eee;
+
+  .article-card::before {
+    left: -12px;
+    right: -12px;
   }
-  .item {
-    display: block;
-    padding: 14px 0;
-    text-decoration: none;
-    color: inherit;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background 0.15s;
-  }
-  .item:last-child {
-    border-bottom: none;
-  }
-  .item:hover {
-    background: #f5f5f5;
-    margin: 0 -12px;
-    padding: 14px 12px;
-    border-radius: 8px;
-  }
-  .item-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-  .item-desc {
-    font-size: 13px;
-    color: #888;
-  }
+
   .footer {
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    font-size: 13px;
-    color: #aaa;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
   }
-  .footer a {
-    color: #666;
-    text-decoration: none;
-  }
-  .footer a:hover {
-    text-decoration: underline;
-  }
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
-  <h1>Jerry 的小站</h1>
-  <p class="subtitle">记录与分享</p>
 
-  <div class="category">
-    <div class="category-title">生活</div>
-    <a class="item" href="shenzhen-qingyuan-week-trip.html">
-      <div class="item-title">深圳清远一周自驾游</div>
-      <div class="item-desc">连州·英德·清远 8 天自驾行程规划</div>
-    </a>
-  </div>
+<div class="deco-line"></div>
 
-  <div class="category">
-    <div class="category-title">项目</div>
-    <a class="item" href="internship/index.html">
-      <div class="item-title">研究院实习 · 亚洲经济发展研究</div>
-      <div class="item-desc">印尼与越南战后发展研究，Justin & Minh 实习项目主页</div>
-    </a>
-  </div>
+<div class="container">
 
-  <div class="category">
-    <div class="category-title">学习</div>
-    <a class="item" href="ai-agent/index.html">
-      <div class="item-title">AI 智能体学习笔记</div>
-      <div class="item-desc">Qwen Code 使用经验、Skills 编写、MCP 接入与应用场景</div>
-    </a>
-    <a class="item" href="math-modeling-lesson1.html">
-      <div class="item-title">数学建模入门导论</div>
-      <div class="item-desc">数模培训第1课 — 数学建模基础概念与方法论</div>
-    </a>
-  </div>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <div class="logo">Jerry<span>.</span></div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#articles">文章</a></li>
+          <li><a href="https://github.com/Jerrychen94" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
 
-  <div class="footer">
-    <a href="https://github.com/Jerrychen94" target="_blank">GitHub</a>
-  </div>
+    <div class="hero">
+      <div class="greeting">你好，欢迎来到我的小站 ✦</div>
+      <h1>记录学习，<br>分享<em>生活</em>与思考</h1>
+      <p class="hero-desc">
+        这里是 Jerry 的个人空间——记录旅途见闻、学习笔记与研究心得。
+        相信好的内容值得被慢慢沉淀。
+      </p>
+    </div>
+  </header>
+
+  <!-- Featured -->
+  <section id="articles">
+    <div class="section-label">置顶推荐</div>
+
+    <a class="featured-card" href="internship/index.html">
+      <div class="featured-label">最新项目</div>
+      <div class="featured-title">研究院实习 · 亚洲经济发展研究</div>
+      <div class="featured-desc">
+        印尼与越南战后发展研究——记录实习期间对亚洲新兴经济体的学习、调研与思考。
+      </div>
+      <div class="featured-footer">
+        <span>2025.07</span>
+        <span>·</span>
+        <span>研究项目</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Articles -->
+  <section class="articles">
+    <div class="section-label">全部文章</div>
+
+    <a class="article-card" href="ai-agent/index.html">
+      <div class="article-card-inner">
+        <div class="article-meta">
+          <span class="article-tag tag-learn">学习</span>
+          <span class="article-date">2025.07</span>
+        </div>
+        <div class="article-title">AI 智能体学习笔记</div>
+        <div class="article-desc">Qwen Code 使用经验、Skills 编写、MCP 接入与应用场景的系统性整理</div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+
+    <a class="article-card" href="math-modeling-lesson1.html">
+      <div class="article-card-inner">
+        <div class="article-meta">
+          <span class="article-tag tag-learn">学习</span>
+          <span class="article-date">2025.07</span>
+        </div>
+        <div class="article-title">数学建模入门导论</div>
+        <div class="article-desc">数模培训第 1 课——数学建模基础概念与方法论</div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+
+    <a class="article-card" href="shenzhen-qingyuan-week-trip.html">
+      <div class="article-card-inner">
+        <div class="article-meta">
+          <span class="article-tag tag-travel">旅途</span>
+          <span class="article-date">2025</span>
+        </div>
+        <div class="article-title">深圳清远一周自驾游</div>
+        <div class="article-desc">连州 · 英德 · 清远——8 天自驾行程规划与旅途记录</div>
+      </div>
+      <span class="article-arrow">→</span>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-text">© 2025 Jerry</div>
+    <div class="footer-links">
+      <a href="https://github.com/Jerrychen94" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.jerrychen.top" target="_blank" rel="noopener">jerrychen.top</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Intersection Observer for scroll reveal on article cards
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
